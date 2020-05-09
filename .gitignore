@@ -1,0 +1,5 @@
+/.idea/
+/nbproject/
+/test/coverage/
+/test/log/
+/vendor/
