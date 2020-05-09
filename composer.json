@@ -12,10 +12,33 @@
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "psr/container": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0 || ^7.0",
+        "codeclimate/php-test-reporter": "<=0.3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dhii\\Services\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dhii\\Services\\Tests\\Unit\\": "test/unit",
+            "Dhii\\Services\\Tests\\Func\\": "test/functional",
+            "Dhii\\Services\\Tests\\Stubs\\": "test/stubs",
+            "Dhii\\Services\\Tests\\Helpers\\": "test/helpers"
+        }
     },
     "scripts": {
         "test": "phpunit",
         "csfix": "php-cs-fixer fix -vvv"
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.33"
+        }
     }
 }
