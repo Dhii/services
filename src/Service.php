@@ -52,6 +52,23 @@ abstract class Service
     }
 
     /**
+     * Creates a copy of this service with different dependency keys.
+     *
+     * @since [*next-version*]
+     *
+     * @param array $dependencies The new service dependency keys.
+     *
+     * @return static The newly created service instance.
+     */
+    public function withDependencies(array $dependencies)
+    {
+        $instance = clone $this;
+        $instance->dependencies = $dependencies;
+
+        return $instance;
+    }
+
+    /**
      * Creates a value for this service using a given container for dependency resolution.
      *
      * @since [*next-version*]

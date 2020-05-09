@@ -47,6 +47,27 @@ class ServiceTest extends TestCase
     /**
      * @since [*next-version*]
      */
+    public function testWithDependencies()
+    {
+        $oldDeps = ['foo', 'bar'];
+        $newDeps = ['baz', 'zap'];
+
+        /* @var $oldService MockObject&Service */
+        $oldService = $this->getMockBuilder(Service::class)
+                        ->setConstructorArgs([$oldDeps])
+                        ->getMockForAbstractClass();
+
+        /* @var $newService MockObject&Service */
+        $newService = $oldService->withDependencies($newDeps);
+
+        static::assertInstanceOf(Service::class, $newService);
+        static::assertEquals($oldDeps, $oldService->getDependencies());
+        static::assertEquals($newDeps, $newService->getDependencies());
+    }
+
+    /**
+     * @since [*next-version*]
+     */
     public function testResolveKeys()
     {
         $services = [
