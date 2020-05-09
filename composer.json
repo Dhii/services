@@ -35,10 +35,5 @@
     "scripts": {
         "test": "phpunit",
         "csfix": "php-cs-fixer fix -vvv"
-    },
-    "config": {
-        "platform": {
-            "php": "7.0.33"
-        }
     }
 }
