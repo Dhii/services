@@ -120,7 +120,7 @@ function (ContainerInterface $c) {
 
 ## [`ServiceList`][ServiceList]
 
-Creates an array that contains the services indicated by its dependencies. Very useful for managing registration of instances when coupled with [`ArrayExtension`].
+Creates an array that contains the services indicated by its dependencies. Very useful for managing registration of instances when coupled with [`ArrayExtension`][ArrayExtension].
 
 ```php
 new ServiceList('service1', 'service2']);
@@ -158,7 +158,7 @@ function (ContainerInterface $c, $prev) {
 
 ## [`FuncService`][FuncService]
 
-A variant of factory, but it returns the callback rather than invoking it. Invocation arguments will be passed before the injected dependencies. Very useful for declaring callback services.
+A variant of `Factory`, but it returns the callback rather than invoking it. Invocation arguments will be passed before the injected dependencies. Very useful for declaring callback services.
 
 ```php
 new FuncService(['dep1', 'dep2'], function($arg1, $arg2, $dep1, $dep2) {
