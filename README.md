@@ -46,24 +46,32 @@ All implementations in this package inherit from [`Service`][Service]; an [invoc
 
 A simple implementation that uses a callback to construct its service.
 
-Unlike a normal anonymous function, the callback given to the `Factory` does not get a `ContainerInterface` argument, but rather the services that match the given dependency keys.
+Unlike a normal anonymous function, the callback given to the `Factory` does not get a `ContainerInterface` argument, but rather the services that match the given dependency keys. This allows omitting a lot of trivial service retrieval code, and most importantly type-hinting the services:
 
 ```php
-new Factory(['dep1', 'dep2'], function($dep1, $dep2) {
+new Factory(['dep1', 'dep2'], function(int $dep1, SomeInterface $dep2) {
   // ...
 });
 ```
 
-Equivalent to:
+Roughly equivalent to:
 
 ```php
 function (ContainerInterface $c) {
   $dep1 = $c->get('dep1');
+  if (!is_int($dep1)) {
+    throw new TypeError(sprintf('Parameter $dep1 must be of type int; %1$s given', is_object($dep1) ? get_class($dep1) : gettype($dep1));
+  }
+
   $dep2 = $c->get('dep2');
+  if (!($dep2 instanceof SomeInterface)) {
+    throw new TypeError(sprintf('Parameter $dep2 must be of type int; %1$s given', is_object($dep2) ? get_class($dep2) : gettype($dep2));
+  }
   // ...
 }
 ```
 
+This is true for all implementations that use a similar mechanic of passing already resolved services to other definitions. Therefore, type-checking code will be henceforth omitted for brevity.
 
 ## [`Extension`][Extension]
 
@@ -104,7 +112,7 @@ function (ContainerInterface $c) {
 }
 ```
 
-Consequently, it also works without any dependencies:
+Consequently, it also works without any dependencies, which is useful when the constructor is parameterless:
 
 ```php
 new Constructor(MyClass::class);
@@ -148,7 +156,7 @@ new ArrayExtension(['dep1', 'dep2'])
 Equivalent to:
 
 ```php
-function (ContainerInterface $c, $prev) {
+function (ContainerInterface $c, array $prev) {
   return array_merge($prev, [
     $c->get('dep1'),
     $c->get('dep2'),
@@ -191,7 +199,7 @@ function (ContainerInterface $c) {
 The [`withDependencies()`][withDeps] method allows all service instances to be copied with different dependencies, while leaving the origianl instances unaffected.
 
 ```php
-$service = new Factory(['database'], function () {
+$service = new Factory(['database'], function ($database) {
   // ...
 });
 
@@ -211,8 +219,10 @@ class LoggerProvider implements ServiceProviderInterface
 {
   public function getFactories()
   {
-    'logger' => new Constructor(FileLogger::class, ['file_path']),
-    'file_path' => new Value(sys_get_tmp_dir() . '/log.txt')
+    return [
+      'logger' => new Constructor(FileLogger::class, ['file_path']),
+      'file_path' => new Value(sys_get_tmp_dir() . '/log.txt')
+    ];
   }
   
   public function getExtensions ()
