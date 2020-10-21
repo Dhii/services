@@ -196,7 +196,7 @@ function (ContainerInterface $c) {
 
 # Mutation
 
-The [`withDependencies()`][withDeps] method allows all service instances to be copied with different dependencies, while leaving the origianl instances unaffected.
+The [`withDependencies()`][withDeps] method allows all service instances to be copied with different dependencies, while leaving the original instances unaffected.
 
 ```php
 $service = new Factory(['database'], function ($database) {
