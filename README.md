@@ -131,7 +131,7 @@ function (ContainerInterface $c) {
 Creates an array that contains the services indicated by its dependencies. Very useful for managing registration of instances when coupled with [`ArrayExtension`][ArrayExtension].
 
 ```php
-new ServiceList('service1', 'service2']);
+new ServiceList(['service1', 'service2']);
 ```
 
 Equivalent to:
