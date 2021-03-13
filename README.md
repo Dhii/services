@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/Dhii/services.svg?branch=develop)](https://travis-ci.org/Dhii/services)
-[![This package complies with Dhii standards](https://img.shields.io/badge/Dhii-Compliant-green.svg?style=flat-square)][Dhii]
-
 # Dhii - Services
+[![Continuous Integration](https://github.com/Dhii/services/actions/workflows/ci.yml/badge.svg)](https://github.com/Dhii/services/actions/workflows/ci.yml)
+[![Latest Stable Version](https://poser.pugx.org/dhii/services/v)](//packagist.org/packages/dhii/services)
+[![Latest Unstable Version](https://poser.pugx.org/dhii/services/v/unstable)](//packagist.org/packages/dhii/services)
 
 This package provides a collection of service factory and extension definition implementations that can be used with [PSR-11 containers][psr11], as well as the experimental [service provider spec][sp], to replace the anonymous functions that are typically used for definitions.
 
@@ -22,7 +22,7 @@ This package provides a collection of service factory and extension definition i
 - [Static Analysis](#static-analysis)
 
 # Requirements
-- PHP >= 7.0
+- PHP >= 7.0 < PHP 8
 
 # Installation
 
@@ -280,7 +280,6 @@ By having all services declare their dependencies, we open up the possibility to
 
 No such tool exists at the time of writing, but I _do_ plan on taking on this task.
 
-[Dhii]: https://github.com/Dhii/dhii
 [psr11]: https://github.com/php-fig/container
 [sp]: https://github.com/container-interop/service-provider
 [composer]: https://getcomposer.org/
