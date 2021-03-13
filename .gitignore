@@ -2,3 +2,5 @@
 /tests/coverage/
 /tests/log/
 /vendor/
+
+.env.example
