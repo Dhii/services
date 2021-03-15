@@ -57,7 +57,7 @@ class FuncServiceTest extends TestCase
         });
 
         $result = $subject($container);
-        static::assertInternalType('callable', $result);
+        static::assertIsCallable($result);
 
         $return = $result();
         static::assertEquals($values, $return);

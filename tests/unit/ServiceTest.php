@@ -21,7 +21,7 @@ class ServiceTest extends TestCase
     {
         $service = $this->getMockForAbstractClass(Service::class, [[]]);
 
-        static::assertInternalType('callable', $service);
+        $this->assertIsCallable($service);
     }
 
     /**
