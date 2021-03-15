@@ -71,22 +71,6 @@ abstract class Service
     }
 
     /**
-     * Resolves a set of service keys using a given container.
-     *
-     * @since [*next-version*]
-     *
-     * @param ContainerInterface $c    The container to use for service resolution.
-     * @param array              $keys The services keys to resolve.
-     *
-     * @return array<int, mixed> A list containing the resolved service values, in the same as given by the $keys
-     *                           argument. All indices from the $keys argument will be preserved.
-     */
-    public static function resolveKeys(ContainerInterface $c, array $keys): array
-    {
-        return array_map([$c, 'get'], $keys);
-    }
-
-    /**
      * Creates a value for this service using a given container for dependency resolution.
      *
      * @since [*next-version*]

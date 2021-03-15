@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dhii\Services\Factories;
 
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 
@@ -38,6 +39,8 @@ use Psr\Container\ContainerInterface;
  */
 class FuncService extends Service
 {
+    use ResolveKeysCapableTrait;
+
     /**
      * @since [*next-version*]
      *
@@ -65,7 +68,7 @@ class FuncService extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = Service::resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveKeys($c, $this->dependencies);
 
         /**
          * @psalm-suppress MissingClosureReturnType Cannot declare mixed until PHP 8

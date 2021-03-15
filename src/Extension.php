@@ -28,6 +28,8 @@ use Psr\Container\ContainerInterface;
  */
 class Extension extends Service
 {
+    use ResolveKeysCapableTrait;
+    
     /**
      * @since [*next-version*]
      *
@@ -55,7 +57,7 @@ class Extension extends Service
      */
     public function __invoke(ContainerInterface $c, $prev = null)
     {
-        $deps = Service::resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveKeys($c, $this->dependencies);
         array_unshift($deps, $prev);
 
         return ($this->definition)(...$deps);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dhii\Services\Factories;
 
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 
@@ -50,6 +51,8 @@ use Psr\Container\ContainerInterface;
  */
 class ServiceList extends Service
 {
+    use ResolveKeysCapableTrait;
+
     /**
      * @inheritDoc
      *
@@ -57,6 +60,6 @@ class ServiceList extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        return Service::resolveKeys($c, $this->dependencies);
+        return $this->resolveKeys($c, $this->dependencies);
     }
 }

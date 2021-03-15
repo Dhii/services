@@ -26,6 +26,8 @@ use Psr\Container\ContainerInterface;
  */
 class Factory extends Service
 {
+    use ResolveKeysCapableTrait;
+
     /**
      * @since [*next-version*]
      *
@@ -54,7 +56,7 @@ class Factory extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = Service::resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveKeys($c, $this->dependencies);
 
         return ($this->definition)(...$deps);
     }

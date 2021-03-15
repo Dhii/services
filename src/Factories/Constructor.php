@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dhii\Services\Factories;
 
 use Dhii\Services\Factory;
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 
@@ -25,6 +26,8 @@ use Psr\Container\ContainerInterface;
  */
 class Constructor extends Service
 {
+    use ResolveKeysCapableTrait;
+
     /**
      * @since [*next-version*]
      *
@@ -53,7 +56,7 @@ class Constructor extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = Service::resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveKeys($c, $this->dependencies);
         $className = $this->className;
 
         return new $className(...$deps);
