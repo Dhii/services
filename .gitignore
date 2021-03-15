@@ -1,5 +1,6 @@
-/.idea/
 /nbproject/
-/test/coverage/
-/test/log/
+/tests/coverage/
+/tests/log/
 /vendor/
+
+.env.example

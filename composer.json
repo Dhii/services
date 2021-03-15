@@ -26,10 +26,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Dhii\\Services\\Tests\\Unit\\": "test/unit",
-            "Dhii\\Services\\Tests\\Func\\": "test/functional",
-            "Dhii\\Services\\Tests\\Stubs\\": "test/stubs",
-            "Dhii\\Services\\Tests\\Helpers\\": "test/helpers"
+            "Dhii\\Services\\Tests\\Unit\\": "tests/unit",
+            "Dhii\\Services\\Tests\\Func\\": "tests/functional",
+            "Dhii\\Services\\Tests\\Stubs\\": "tests/stubs",
+            "Dhii\\Services\\Tests\\Helpers\\": "tests/helpers"
         }
     },
     "scripts": {
