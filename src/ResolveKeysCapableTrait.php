@@ -28,7 +28,7 @@ trait ResolveKeysCapableTrait
      * @param ContainerInterface $c    The container to use for service resolution.
      * @param array<string>    $keys The services keys to resolve.
      *
-     * @return array<int,mixed> A map of specified service keys to their resolved values,
+     * @return array<string,mixed> A map of specified service keys to their resolved values,
      *                          in the same order as in $keys.
      */
     protected function resolveDeps(ContainerInterface $c, array $keys): array
