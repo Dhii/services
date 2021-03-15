@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
 ### Remove
-- Support for PHP 7.2.
+- Support for PHP < 7.1.
 
 ### Add
 - Support for PHP 8.
