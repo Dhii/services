@@ -11,7 +11,7 @@
         rememberPropertyAssignmentsAfterCall="true"
         allowPhpStormGenerics="true"
         allowCoercionFromStringToClassConst="false"
-        allowStringToStandInForClass="false"
+        allowStringToStandInForClass="true"
         memoizeMethodCallResults="false"
         hoistConstants="false"
         addParamDefaultToDocblockType="false"

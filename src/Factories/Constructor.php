@@ -54,7 +54,8 @@ class Constructor extends Service
     public function __invoke(ContainerInterface $c)
     {
         $deps = Service::resolveKeys($c, $this->dependencies);
+        $className = $this->className;
 
-        return new $this->className(...$deps);
+        return new $className(...$deps);
     }
 }

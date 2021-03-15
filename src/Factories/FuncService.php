@@ -67,6 +67,10 @@ class FuncService extends Service
     {
         $deps = Service::resolveKeys($c, $this->dependencies);
 
+        /**
+         * @psalm-suppress MissingClosureReturnType Cannot declare mixed until PHP 8
+         * @psalm-suppress MissingClosureParamType Cannot declare mixed until PHP 8
+         */
         return function (...$args) use ($deps) {
             return ($this->function)(...$args, ...$deps);
         };

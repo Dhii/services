@@ -63,6 +63,7 @@ class StringService extends Service
 
         $replace = [];
         foreach ($this->dependencies as $idx => $dependency) {
+            $idx = (string) $idx;
             $replace['{' . $idx . '}'] = strval($c->get($dependency));
         }
 

@@ -78,8 +78,8 @@ abstract class Service
      * @param ContainerInterface $c    The container to use for service resolution.
      * @param array              $keys The services keys to resolve.
      *
-     * @return array A list containing the resolved service values, in the same as given by the $keys argument. All
-     *               indices from the $keys argument will be preserved.
+     * @return array<int, mixed> A list containing the resolved service values, in the same as given by the $keys
+     *                           argument. All indices from the $keys argument will be preserved.
      */
     public static function resolveKeys(ContainerInterface $c, array $keys): array
     {
