@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PhpCodeSniffer">
     <phpcs_settings>
-      <phpcs_by_interpreter interpreter_id="e853c526-d67c-4749-8038-d9a9e8188337" beautifier_path="/app/vendor/bin/phpcbf" tool_path="/app/vendor/bin/phpcs" timeout="30000" />
+      <phpcs_by_interpreter interpreter_id="e853c526-d67c-4749-8038-d9a9e8188337" beautifier_path="/app/vendor/bin/phpcbf" standards="MySource;PEAR;PSR1;PSR12;PSR2;SlevomatCodingStandard;Squiz;Zend" tool_path="/app/vendor/bin/phpcs" timeout="30000" />
     </phpcs_settings>
   </component>
   <component name="PhpIncludePathManager">
@@ -193,7 +193,6 @@
   <component name="PhpUnit">
     <phpunit_settings>
       <phpunit_by_interpreter interpreter_id="e853c526-d67c-4749-8038-d9a9e8188337" configuration_file_path="/app/phpunit.xml.dist" custom_loader_path="/app/vendor/autoload.php" phpunit_phar_path="" use_configuration_file="true" />
-      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
     </phpunit_settings>
   </component>
 </project>

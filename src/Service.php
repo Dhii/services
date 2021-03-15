@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services;
 
 use Psr\Container\ContainerInterface;
@@ -46,7 +48,7 @@ abstract class Service
      *
      * @return string[] A list of strings each representing the key of a service.
      */
-    public function getDependencies() : array
+    public function getDependencies(): array
     {
         return $this->dependencies;
     }
@@ -69,17 +71,6 @@ abstract class Service
     }
 
     /**
-     * Creates a value for this service using a given container for dependency resolution.
-     *
-     * @since [*next-version*]
-     *
-     * @param ContainerInterface $c The container to use to resolve dependencies.
-     *
-     * @return mixed The created service value.
-     */
-    abstract public function __invoke(ContainerInterface $c);
-
-    /**
      * Resolves a set of service keys using a given container.
      *
      * @since [*next-version*]
@@ -90,8 +81,19 @@ abstract class Service
      * @return array A list containing the resolved service values, in the same as given by the $keys argument. All
      *               indices from the $keys argument will be preserved.
      */
-    public static function resolveKeys(ContainerInterface $c, array $keys)
+    public static function resolveKeys(ContainerInterface $c, array $keys): array
     {
         return array_map([$c, 'get'], $keys);
     }
+
+    /**
+     * Creates a value for this service using a given container for dependency resolution.
+     *
+     * @since [*next-version*]
+     *
+     * @param ContainerInterface $c The container to use to resolve dependencies.
+     *
+     * @return mixed The created service value.
+     */
+    abstract public function __invoke(ContainerInterface $c);
 }

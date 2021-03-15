@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services\Extensions;
 
 use Dhii\Services\Service;
