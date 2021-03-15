@@ -6,10 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
 ### Remove
-- Support for PHP < 7.1.
+- Support for PHP < 7.1 (#3).
 
 ### Add
-- Support for PHP 8.
+- Support for PHP 8 (#3).
+- Extract `resolveKeys()` to trait (#3).
 
 ## [0.1.0-alpha1] - 2021-03-15
 Initial version.
