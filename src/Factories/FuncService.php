@@ -35,23 +35,16 @@ use Psr\Container\ContainerInterface;
  * $fn($arg1, $arg2);
  * ```
  *
- * @since [*next-version*]
  */
 class FuncService extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /**
-     * @since [*next-version*]
-     *
-     * @var callable
-     */
+    /** @var callable */
     protected $function;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param callable $function The function to return when the service is created.
      */
@@ -63,8 +56,6 @@ class FuncService extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {

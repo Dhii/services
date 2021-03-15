@@ -38,7 +38,6 @@ use Psr\Container\ContainerInterface;
  *  ]
  *  ```
  *
- * @since [*next-version*]
  */
 class ArrayExtension extends Service
 {
@@ -46,8 +45,6 @@ class ArrayExtension extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c, $prev = [])
     {

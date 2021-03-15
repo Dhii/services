@@ -16,23 +16,18 @@ use Psr\Container\ContainerInterface;
  * Services are also aware of any services that they depend on, by key. These keys may be used by derivations of this
  * class to achieve some automation, be it during run-time or for static analysis purposes.
  *
- * @since [*next-version*]
  * @see   __invoke()
  * @see   ContainerInterface
  */
 abstract class Service
 {
     /**
-     * @since [*next-version*]
-     *
      * @var string[]
      */
     protected $dependencies;
 
     /**
      * Constructor.
-     *
-     * @since [*next-version*]
      *
      * @param string[] $dependencies A list of keys that correspond to other services that this service depends on.
      */
@@ -44,8 +39,6 @@ abstract class Service
     /**
      * Retrieves the keys of dependent services.
      *
-     * @since [*next-version*]
-     *
      * @return string[] A list of strings each representing the key of a service.
      */
     public function getDependencies(): array
@@ -55,8 +48,6 @@ abstract class Service
 
     /**
      * Creates a copy of this service with different dependency keys.
-     *
-     * @since [*next-version*]
      *
      * @param array $dependencies The new service dependency keys.
      *
@@ -72,8 +63,6 @@ abstract class Service
 
     /**
      * Creates a value for this service using a given container for dependency resolution.
-     *
-     * @since [*next-version*]
      *
      * @param ContainerInterface $c The container to use to resolve dependencies.
      *

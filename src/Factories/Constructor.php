@@ -21,24 +21,17 @@ use Psr\Container\ContainerInterface;
  * new Constructor(SomeClass::class, ['foo', 'bar']);
  * ```
  *
- * @since [*next-version*]
  * @see   Factory
  */
 class Constructor extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /**
-     * @since [*next-version*]
-     *
-     * @var string
-     */
+    /** @var string */
     protected $className;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param string $className The name of the class whose constructor to invoke.
      */
@@ -51,8 +44,6 @@ class Constructor extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {

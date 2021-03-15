@@ -23,24 +23,17 @@ use Psr\Container\ContainerInterface;
  * });
  * ```
  *
- * @since [*next-version*]
  * @see Factory For a similar implementation that does not accept a previous service value.
  */
 class Extension extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /**
-     * @since [*next-version*]
-     *
-     * @var callable
-     */
+    /** @var callable */
     protected $definition;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param callable $definition The extension definition.
      */
@@ -52,8 +45,6 @@ class Extension extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c, $prev = null)
     {
