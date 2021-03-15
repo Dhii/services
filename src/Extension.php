@@ -29,7 +29,7 @@ use Psr\Container\ContainerInterface;
 class Extension extends Service
 {
     use ResolveKeysCapableTrait;
-    
+
     /**
      * @since [*next-version*]
      *
