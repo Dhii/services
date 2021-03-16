@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services\Factories;
 
 use Dhii\Services\Service;
@@ -19,21 +21,14 @@ use Psr\Container\ContainerInterface;
  * $service($c) // 5
  * ```
  *
- * @since [*next-version*]
  */
 class GlobalVar extends Service
 {
-    /**
-     * @since [*next-version*]
-     *
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
     /**
      * Constructor.
-     *
-     * @since [*next-version*]
      *
      * @param string $name The name of the global variable.
      */
@@ -46,8 +41,6 @@ class GlobalVar extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {

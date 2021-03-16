@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services\Factories;
 
 use Dhii\Services\Service;
@@ -19,22 +21,14 @@ use Psr\Container\ContainerInterface;
  *      ]),
  *  ]
  *  ```
- *
- * @since [*next-version*]
  */
 class StringService extends Service
 {
-    /**
-     * @since [*next-version*]
-     *
-     * @var string
-     */
+    /** @var string */
     protected $format;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param string $format The format string. Substrings wrapped in curly braces will be interpolated with the
      *                       string value of the resolved dependency at the index indicated by that substring. The index
@@ -50,8 +44,6 @@ class StringService extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {
@@ -61,6 +53,7 @@ class StringService extends Service
 
         $replace = [];
         foreach ($this->dependencies as $idx => $dependency) {
+            $idx = (string) $idx;
             $replace['{' . $idx . '}'] = strval($c->get($dependency));
         }
 

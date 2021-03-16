@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services\Factories;
 
 use Dhii\Services\Factory;
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 
@@ -18,22 +21,17 @@ use Psr\Container\ContainerInterface;
  * new Constructor(SomeClass::class, ['foo', 'bar']);
  * ```
  *
- * @since [*next-version*]
  * @see   Factory
  */
 class Constructor extends Service
 {
-    /**
-     * @since [*next-version*]
-     *
-     * @var string
-     */
+    use ResolveKeysCapableTrait;
+
+    /** @var string */
     protected $className;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param string $className The name of the class whose constructor to invoke.
      */
@@ -46,13 +44,12 @@ class Constructor extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = Service::resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveKeys($c, $this->dependencies);
+        $className = $this->className;
 
-        return new $this->className(...$deps);
+        return new $className(...$deps);
     }
 }

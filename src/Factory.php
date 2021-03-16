@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services;
 
 use Dhii\Services\Factories\Constructor;
@@ -18,23 +20,18 @@ use Psr\Container\ContainerInterface;
  * });
  * ```
  *
- * @since [*next-version*]
  * @see   Constructor For a similar implementation that automatically injects dependencies into constructors.
  * @see   Extension For a similar implementation that can be used with extension services.
  */
 class Factory extends Service
 {
-    /**
-     * @since [*next-version*]
-     *
-     * @var callable
-     */
+    use ResolveKeysCapableTrait;
+
+    /** @var callable */
     protected $definition;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param callable $definition The factory definition.
      */
@@ -47,12 +44,10 @@ class Factory extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = Service::resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveKeys($c, $this->dependencies);
 
         return ($this->definition)(...$deps);
     }

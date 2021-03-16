@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php-versions: ['7.0','7.1', '7.2', '7.3', '7.4']
+                php-versions: ['7.1', '7.2', '7.3', '7.4', '8.0']
         name: PHP ${{ matrix.php-versions }}
         steps:
             -   uses: actions/checkout@v2
@@ -27,3 +27,9 @@ jobs:
 
             -   name: Run PHPUnit
                 run: vendor/bin/phpunit
+
+            -   name: Psalm
+                run: ./vendor/bin/psalm --show-info --threads=8 --diff
+
+            -   name: PHPCS
+                run: ./vendor/bin/phpcs -s --runtime-set ignore_warnings_on_exit 1

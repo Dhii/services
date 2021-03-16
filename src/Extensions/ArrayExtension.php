@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services\Extensions;
 
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 
@@ -35,17 +38,16 @@ use Psr\Container\ContainerInterface;
  *  ]
  *  ```
  *
- * @since [*next-version*]
  */
 class ArrayExtension extends Service
 {
+    use ResolveKeysCapableTrait;
+
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c, $prev = [])
     {
-        return array_merge($prev, Service::resolveKeys($c, $this->dependencies));
+        return array_merge($prev, $this->resolveKeys($c, $this->dependencies));
     }
 }

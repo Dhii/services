@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dhii\Services\Factories;
 
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 
@@ -32,21 +35,16 @@ use Psr\Container\ContainerInterface;
  * $fn($arg1, $arg2);
  * ```
  *
- * @since [*next-version*]
  */
 class FuncService extends Service
 {
-    /**
-     * @since [*next-version*]
-     *
-     * @var callable
-     */
+    use ResolveKeysCapableTrait;
+
+    /** @var callable */
     protected $function;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param callable $function The function to return when the service is created.
      */
@@ -58,13 +56,15 @@ class FuncService extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = Service::resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveKeys($c, $this->dependencies);
 
+        /**
+         * @psalm-suppress MissingClosureReturnType Cannot declare mixed until PHP 8
+         * @psalm-suppress MissingClosureParamType Cannot declare mixed until PHP 8
+         */
         return function (...$args) use ($deps) {
             return ($this->function)(...$args, ...$deps);
         };

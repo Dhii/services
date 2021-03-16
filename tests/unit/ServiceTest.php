@@ -21,7 +21,7 @@ class ServiceTest extends TestCase
     {
         $service = $this->getMockForAbstractClass(Service::class, [[]]);
 
-        static::assertInternalType('callable', $service);
+        $this->assertIsCallable($service);
     }
 
     /**
@@ -63,31 +63,5 @@ class ServiceTest extends TestCase
         static::assertInstanceOf(Service::class, $newService);
         static::assertEquals($oldDeps, $oldService->getDependencies());
         static::assertEquals($newDeps, $newService->getDependencies());
-    }
-
-    /**
-     * @since [*next-version*]
-     */
-    public function testResolveKeys()
-    {
-        $services = [
-            'foo' => 100,
-            'bar' => 200,
-            'baz' => 300,
-        ];
-
-        $keys = array_keys($services);
-        $values = array_values($services);
-
-        /* @var $container MockObject&ContainerInterface */
-        $container = $this->getMockForAbstractClass(ContainerInterface::class);
-        $container->expects(static::exactly(3))
-                  ->method('get')
-                  ->withConsecutive([$keys[0]], [$keys[1]], [$keys[2]])
-                  ->willReturnOnConsecutiveCalls(...$values);
-
-        $result = Service::resolveKeys($container, $keys);
-
-        static::assertEquals($values, $result);
     }
 }
