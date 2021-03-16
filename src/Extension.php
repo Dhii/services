@@ -25,7 +25,7 @@ use Psr\Container\ContainerInterface;
  *
  * @see Factory For a similar implementation that does not accept a previous service value.
  */
-class Extension extends Service
+class Extension extends Service implements ExtensionInterface
 {
     use ResolveKeysCapableTrait;
 

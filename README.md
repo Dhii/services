@@ -3,7 +3,10 @@
 [![Latest Stable Version](https://poser.pugx.org/dhii/services/v)](//packagist.org/packages/dhii/services)
 [![Latest Unstable Version](https://poser.pugx.org/dhii/services/v/unstable)](//packagist.org/packages/dhii/services)
 
-This package provides a collection of service factory and extension definition implementations that can be used with [PSR-11 containers][psr11], as well as the experimental [service provider spec][sp], to replace the anonymous functions that are typically used for definitions.
+This package provides a collection of service factory and extension definition implementations
+that can be used with [PSR-11][] containers, as well as the experimental
+[Service Provider][] spec, to replace the anonymous functions that are typically used
+for definitions. Services here implement [`dhii/services-interface`][]. 
 
 ----
 
@@ -280,8 +283,9 @@ By having all services declare their dependencies, we open up the possibility to
 
 No such tool exists at the time of writing, but I _do_ plan on taking on this task.
 
-[psr11]: https://github.com/php-fig/container
-[sp]: https://github.com/container-interop/service-provider
+[PSR-11]: https://github.com/php-fig/container
+[Service Provider]: https://github.com/container-interop/service-provider
+[`dhii/services-interface`]: https://github.com/Dhii/services-interface
 [composer]: https://getcomposer.org/
 [__invoke]: https://www.php.net/manual/en/language.oop5.magic.php#object.invoke
 [getDeps]: https://github.com/Dhii/services/blob/initial-version/src/Service.php#L49

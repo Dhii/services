@@ -23,7 +23,7 @@ use Psr\Container\ContainerInterface;
  * @see   Constructor For a similar implementation that automatically injects dependencies into constructors.
  * @see   Extension For a similar implementation that can be used with extension services.
  */
-class Factory extends Service
+class Factory extends Service implements ServiceInterface
 {
     use ResolveKeysCapableTrait;
 
