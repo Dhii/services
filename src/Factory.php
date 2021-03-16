@@ -20,7 +20,6 @@ use Psr\Container\ContainerInterface;
  * });
  * ```
  *
- * @since [*next-version*]
  * @see   Constructor For a similar implementation that automatically injects dependencies into constructors.
  * @see   Extension For a similar implementation that can be used with extension services.
  */
@@ -28,17 +27,11 @@ class Factory extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /**
-     * @since [*next-version*]
-     *
-     * @var callable
-     */
+    /** @var callable */
     protected $definition;
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      *
      * @param callable $definition The factory definition.
      */
@@ -51,8 +44,6 @@ class Factory extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {

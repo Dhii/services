@@ -47,7 +47,6 @@ use Psr\Container\ContainerInterface;
  * $list = $c->get('list'); // ['num' => 5, 'msg' => "hello"]
  * ```
  *
- * @since [*next-version*]
  */
 class ServiceList extends Service
 {
@@ -55,8 +54,6 @@ class ServiceList extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {

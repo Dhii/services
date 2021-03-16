@@ -27,28 +27,17 @@ use Psr\Container\NotFoundExceptionInterface;
  * });
  * ```
  *
- * @since [*next-version*]
  */
 class Alias extends Service
 {
-    /**
-     * @since [*next-version*]
-     *
-     * @var string
-     */
+    /** @var string */
     protected $key;
 
-    /**
-     * @since [*next-version*]
-     *
-     * @var callable|null
-     */
+    /** @var callable|null */
     protected $default;
 
     /**
      * Constructor.
-     *
-     * @since [*next-version*]
      *
      * @param string        $key     The key of the original service to be aliased.
      * @param callable|null $default Optional default definition to use if the original service is not found. If not
@@ -65,8 +54,6 @@ class Alias extends Service
 
     /**
      * @inheritDoc
-     *
-     * @since [*next-version*]
      */
     public function __invoke(ContainerInterface $c)
     {
