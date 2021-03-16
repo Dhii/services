@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85dc3612b05361cd2f34be34f1107cda",
+    "content-hash": "00a92d51a58fbfff5cd2916e3a7e84f4",
     "packages": [
+        {
+            "name": "dhii/services-interface",
+            "version": "v0.1.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dhii/services-interface.git",
+                "reference": "e147543744a5ed83474ed44d0ba31c9d48b81ef9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dhii/services-interface/zipball/e147543744a5ed83474ed44d0ba31c9d48b81ef9",
+                "reference": "e147543744a5ed83474ed44d0ba31c9d48b81ef9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 | ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0 | ^8.0 | ^9.0",
+                "slevomat/coding-standard": "^6.0",
+                "vimeo/psalm": "^4.0",
+                "webmozart/path-util": "^2.3@stable"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-initial": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dhii\\Services\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Ukhanev",
+                    "email": "xedin.unknown@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Interfaces for services compatible with Service Provider spec",
+            "support": {
+                "issues": "https://github.com/Dhii/services-interface/issues",
+                "source": "https://github.com/Dhii/services-interface/tree/v0.1.0-alpha1"
+            },
+            "time": "2021-03-16T06:05:04+00:00"
+        },
         {
             "name": "psr/container",
             "version": "1.0.0",
