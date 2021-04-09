@@ -24,18 +24,21 @@ use Psr\Container\ContainerInterface;
  *
  * @see   Factory
  *
+ * @template T
+ *
  * @psalm-import-type ServiceRef from Service
  */
 class Constructor extends Service
 {
     use ResolveKeysCapableTrait;
 
+    /** @var class-string<T> */
     protected string $className;
 
     /**
      * @inheritDoc
      *
-     * @param string $className The name of the class whose constructor to invoke.
+     * @param class-string<T> $className The name of the class whose constructor to invoke.
      * @param array<ServiceRef> $dependencies A list of dependencies.
      */
     public function __construct(string $className, array $dependencies = [])
@@ -46,7 +49,11 @@ class Constructor extends Service
     }
 
     /**
-     * @inheritDoc
+     * Create the service from this definition.
+     *
+     * @param ContainerInterface $c The container to use for dependency resolution.
+     *
+     * @return T The new service.
      *
      * @throws ContainerExceptionInterface If problem resolving from container.
      */
