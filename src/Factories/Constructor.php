@@ -22,18 +22,20 @@ use Psr\Container\ContainerInterface;
  * ```
  *
  * @see   Factory
+ *
+ * @template T
  */
 class Constructor extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /** @var string */
+    /** @var class-string<T> */
     protected $className;
 
     /**
      * @inheritDoc
      *
-     * @param string $className The name of the class whose constructor to invoke.
+     * @param class-string<T> $className The name of the class whose constructor to invoke.
      */
     public function __construct(string $className, array $dependencies = [])
     {
@@ -43,7 +45,10 @@ class Constructor extends Service
     }
 
     /**
-     * @inheritDoc
+     * Create the service from this definition.
+     *
+     * @param ContainerInterface $c The container to use for dependency resolution.
+     * @return T The new service.
      */
     public function __invoke(ContainerInterface $c)
     {
