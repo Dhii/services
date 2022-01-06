@@ -64,15 +64,6 @@ abstract class Service
     }
 
     /**
-     * Creates a value for this service using a given container for dependency resolution.
-     *
-     * @param ContainerInterface $c The container to use to resolve dependencies.
-     *
-     * @return mixed The created service value.
-     */
-    abstract public function __invoke(ContainerInterface $c);
-
-    /**
      * Retrieves a service definition from a file.
      *
      * @param string $path The path to the file. This file MUST return a service definition.
@@ -94,4 +85,13 @@ abstract class Service
 
         return $definition;
     }
+
+    /**
+     * Creates a value for this service using a given container for dependency resolution.
+     *
+     * @param ContainerInterface $c The container to use to resolve dependencies.
+     *
+     * @return mixed The created service value.
+     */
+    abstract public function __invoke(ContainerInterface $c);
 }
