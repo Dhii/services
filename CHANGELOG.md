@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Added
+- `Service::fromFile()`, which helps split configuration into multiple files (#9).
 
 ## [0.1.0] - 2022-01-05
 Stable release.
