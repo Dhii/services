@@ -73,7 +73,7 @@ abstract class Service
      */
     public static function fromFile(string $path): Service
     {
-        if (!is_file($path) || is_readable($path)) {
+        if (!is_file($path) || !is_readable($path)) {
             throw new RuntimeException(sprintf('Service file "%1$s" is not a file or is not readable', $path));
         }
 
