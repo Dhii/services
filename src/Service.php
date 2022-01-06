@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Dhii\Services;
 
 use Psr\Container\ContainerInterface;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Partial implementation of a service.
@@ -69,4 +71,27 @@ abstract class Service
      * @return mixed The created service value.
      */
     abstract public function __invoke(ContainerInterface $c);
+
+    /**
+     * Retrieves a service definition from a file.
+     *
+     * @param string $path The path to the file. This file MUST return a service definition.
+     * @return Service The service definition.
+     *
+     * @throws RuntimeException If problem retrieving.
+     */
+    public static function fromFile(string $path): Service
+    {
+        if (!is_file($path) || is_readable($path)) {
+            throw new RuntimeException(sprintf('Service file "%1$s" is not a file or is not readable', $path));
+        }
+
+        $definition = require $path;
+
+        if (!$definition instanceof Service) {
+            throw new UnexpectedValueException(sprintf('Service file "%1$s" does not contain a valid service', $path));
+        }
+
+        return $definition;
+    }
 }
