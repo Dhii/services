@@ -35,28 +35,65 @@ class ArrayExtensionTest extends TestCase
     /**
      * @since [*next-version*]
      */
-    public function testInvoke()
+    public function testInvokeList()
     {
         $prev = [
             'first',
             'second',
         ];
 
+        $deps = [
+            'foo',
+            'bar',
+            'baz'
+        ];
+
         $services = [
             'foo' => 'third',
             'bar' => 'fourth',
-            'baz' => 'fifth',
+            'baz' => 'fifth'
         ];
-
-        $keys = array_keys($services);
-        $values = array_values($services);
 
         $container = MockContainer::with($this, $services);
 
-        $subject = new ArrayExtension($keys);
+        $subject = new ArrayExtension($deps);
         $result = $subject($container, $prev);
 
-        static::assertEquals(array_merge($prev, $values), $result);
+        $expected = array_merge($prev, array_combine(array_keys($deps), array_values($services)));
+
+        static::assertEquals($expected, $result);
+    }
+
+    /**
+     * @since [*next-version*]
+     */
+    public function testInvokeMap()
+    {
+        $prev = [
+            'a' => 'first',
+            'b' => 'second',
+        ];
+
+        $deps = [
+            'c' => 'foo',
+            'd' => 'bar',
+            'e' => 'baz'
+        ];
+
+        $services = [
+            'foo' => 'third',
+            'bar' => 'fourth',
+            'baz' => 'fifth'
+        ];
+
+        $container = MockContainer::with($this, $services);
+
+        $subject = new ArrayExtension($deps);
+        $result = $subject($container, $prev);
+
+        $expected = array_merge($prev, array_combine(array_keys($deps), array_values($services)));
+
+        static::assertEquals($expected, $result);
     }
 
     /**
@@ -68,7 +105,6 @@ class ArrayExtensionTest extends TestCase
             'first',
             'second',
         ];
-
 
         $container = MockContainer::create($this);
 

@@ -48,6 +48,6 @@ class ArrayExtension extends Service
      */
     public function __invoke(ContainerInterface $c, $prev = [])
     {
-        return array_merge($prev, $this->resolveKeys($c, $this->dependencies));
+        return array_merge($prev, $this->resolveKeysAssoc($c, $this->dependencies));
     }
 }

@@ -23,6 +23,19 @@ trait ResolveKeysCapableTrait
     }
 
     /**
+     * Resolves a set of service keys using a given container, preserving the keys in list of services.
+     *
+     * @param ContainerInterface $c    The container to use for service resolution.
+     * @param array<string>      $keys The services keys to resolve.
+     *
+     * @return array<string,mixed> A mapping of the keys from the $keys argument to the resolved services as values.
+     */
+    protected function resolveKeysAssoc(ContainerInterface $c, array $keys): array
+    {
+        return array_map([$c, 'get'], $keys);
+    }
+
+    /**
      * Resolves a set of service keys using a given container.
      *
      * @param ContainerInterface $c    The container to use for service resolution.
