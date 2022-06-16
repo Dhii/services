@@ -56,6 +56,7 @@ class FuncService extends Service
 
     /**
      * @inheritDoc
+     * @return callable
      */
     public function __invoke(ContainerInterface $c)
     {
