@@ -24,31 +24,46 @@ class ResolveKeysCapableTraitTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @since [*next-version*]
-     */
-    public function testResolveKeys()
+    public function testResolveDeps()
     {
+        // Container state
         $services = [
             'foo' => 100,
             'bar' => 200,
             'baz' => 300,
         ];
-
         $keys = array_keys($services);
         $values = array_values($services);
-        $subject =  $this->createSubject();
+        $container = $this->getMockForAbstractClass(ContainerInterface::class);
 
-        /* @var $container MockObject&ContainerInterface */
+        // The service dependency
+        $depValue = new \stdClass();
+        $depService = $this->getMockForAbstractClass(Service::class, [[$keys[1]]]);
+        $depService->expects(static::once())
+            ->method('__invoke')
+            ->with($container)
+            ->willReturnCallback(function (ContainerInterface $c) use ($depValue, $keys) {
+               // Simulate dependency
+               $c->get($keys[1]);
+               return $depValue;
+            });
+
+        // The container mock
         $container = $this->getMockForAbstractClass(ContainerInterface::class);
         $container->expects(static::exactly(3))
-            ->method('get')
-            ->withConsecutive([$keys[0]], [$keys[1]], [$keys[2]])
-            ->willReturnOnConsecutiveCalls(...$values);
-        $method = AccessibleMethod::create($subject, 'resolveKeys');
+                  ->method('get')
+                  ->withConsecutive([$keys[0]], [$keys[1]], [$keys[2]])
+                  ->willReturnOnConsecutiveCalls(...$values);
+        
+        // The SUT
+        $subject =  $this->createSubject();
+        $method = AccessibleMethod::create($subject, 'resolveDeps');
 
-        $result = $method($container, $keys);
+        // The test
+        $args = ['foo', $depService, 'baz'];
+        $result = $method($container, $args);
+        $expected = [$values[0], $depValue, $values[2]];
 
-        static::assertEquals($values, $result);
+        static::assertEquals($expected, $result);
     }
 }
