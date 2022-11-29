@@ -11,6 +11,21 @@ trait ResolveKeysCapableTrait
     /**
      * Resolves a set of service keys using a given container.
      *
+     * @deprecated Use {@see resolveDeps()} instead.
+     *
+     * @param ContainerInterface $c    The container to use for service resolution.
+     * @param array<string>      $keys The services keys to resolve.
+     *
+     * @return array<int,mixed> A list containing the resolved service values, in the same order as in $keys.
+     */
+    protected function resolveKeys(ContainerInterface $c, array $keys): array
+    {
+        return $this->resolveDeps($c, $keys);
+    }
+
+    /**
+     * Resolves a set of service keys using a given container.
+     *
      * @param ContainerInterface    $c    The container to use for service resolution.
      * @param array<Service|string> $deps The list of services dependencies, or their keys.
      *
