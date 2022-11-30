@@ -24,7 +24,7 @@ trait ResolveKeysCapableTrait
     }
 
     /**
-     * Resolves a set of service keys using a given container.
+     * Resolves a set of dependencies using a given container.
      *
      * @param ContainerInterface    $c    The container to use for service resolution.
      * @param array<Service|string> $deps The list of services dependencies, or their keys.
