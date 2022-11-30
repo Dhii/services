@@ -36,13 +36,24 @@ trait ResolveKeysCapableTrait
     {
         $result = [];
         foreach ($deps as $dep) {
-            if ($dep instanceof Service) {
-                $result[] = $dep($c);
-            } else {
-                $result[] = $c->get($dep);
-            }
+            $result[] = $this->resolveSingleDep($c, $dep);
         }
 
         return $result;
+    }
+
+    /**
+     * Resolves a single dependency using a given container.
+     *
+     * @param ContainerInterface $c   The container to use for service resolution.
+     * @param Service|string     $dep The service definition, or its key.
+     *
+     * @return mixed The resolved service value.
+     */
+    protected function resolveSingleDep(ContainerInterface $c, $dep)
+    {
+        return $dep instanceof Service
+            ? $dep($c)
+            : $c->get($dep);
     }
 }
