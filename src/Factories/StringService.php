@@ -68,10 +68,20 @@ class StringService extends Service
      * @param ContainerInterface $c The container to retrieve the service from.
      *
      * @return string The string representation of the service.
+     *
+     * @throws UnexpectedValueException If service could be converted to string.
      */
     protected function resolveString(string $serviceName, ContainerInterface $c): string
     {
         $service = $c->get($serviceName);
+
+        if (!is_null($service) && !is_scalar($service) && !is_object($service)) {
+            throw new UnexpectedValueException(sprintf(
+                'Service must be of type null|scalar|object to be stringable; %1$s received',
+                gettype($service)
+            ));
+        }
+
         $value = strval($service);
 
         return $value;
