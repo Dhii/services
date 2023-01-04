@@ -44,25 +44,7 @@ class StringService extends Service
     }
 
     /**
-     * @inheritDoc
-     */
-    public function __invoke(ContainerInterface $c)
-    {
-        if (empty($this->dependencies)) {
-            return $this->format;
-        }
-
-        $replace = [];
-        foreach ($this->dependencies as $idx => $dependency) {
-            $idx = (string) $idx;
-            $replace['{' . $idx . '}'] = $this->resolveString($dependency, $c);
-        }
-
-        return strtr($this->format, $replace);
-    }
-
-    /**
-     * Retrieve a service _as a string_ with the speified name from the given container.
+     * Retrieve a service _as a string_ with the specified name from the given container.
      *
      * @param string $serviceName Name of the service to retrieve.
      * @param ContainerInterface $c The container to retrieve the service from.
@@ -85,5 +67,23 @@ class StringService extends Service
         $value = strval($service);
 
         return $value;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function __invoke(ContainerInterface $c)
+    {
+        if (empty($this->dependencies)) {
+            return $this->format;
+        }
+
+        $replace = [];
+        foreach ($this->dependencies as $idx => $dependency) {
+            $idx = (string) $idx;
+            $replace['{' . $idx . '}'] = $this->resolveString($dependency, $c);
+        }
+
+        return strtr($this->format, $replace);
     }
 }
