@@ -6,6 +6,7 @@ namespace Dhii\Services\Factories;
 
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
+use UnexpectedValueException;
 
 /**
  * A factory for string values. Supports interpolation with dependent service values.
@@ -54,9 +55,25 @@ class StringService extends Service
         $replace = [];
         foreach ($this->dependencies as $idx => $dependency) {
             $idx = (string) $idx;
-            $replace['{' . $idx . '}'] = strval($c->get($dependency));
+            $replace['{' . $idx . '}'] = $this->resolveString($dependency, $c);
         }
 
         return strtr($this->format, $replace);
+    }
+
+    /**
+     * Retrieve a service _as a string_ with the speified name from the given container.
+     *
+     * @param string $serviceName Name of the service to retrieve.
+     * @param ContainerInterface $c The container to retrieve the service from.
+     *
+     * @return string The string representation of the service.
+     */
+    protected function resolveString(string $serviceName, ContainerInterface $c): string
+    {
+        $service = $c->get($serviceName);
+        $value = strval($service);
+
+        return $value;
     }
 }
