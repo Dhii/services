@@ -26,8 +26,8 @@ trait ResolveKeysCapableTrait
     /**
      * Resolves a set of dependencies using a given container.
      *
-     * @param ContainerInterface    $c    The container to use for service resolution.
-     * @param array<Service|string> $deps The list of services dependencies, or their keys.
+     * @param ContainerInterface     $c    The container to use for service resolution.
+     * @param array<string|callable> $deps The list of dependencies, where each is either a callable definitions or key.
      *
      * @return array<string,mixed> A map of specified service keys to their resolved values,
      *                             in the same order as in $keys.
@@ -45,14 +45,14 @@ trait ResolveKeysCapableTrait
     /**
      * Resolves a single dependency using a given container.
      *
-     * @param ContainerInterface $c   The container to use for service resolution.
-     * @param Service|string     $dep The service definition, or its key.
+     * @param ContainerInterface  $c   The container to use for service resolution.
+     * @param string|callable     $dep The service definition, or its key.
      *
      * @return mixed The resolved service value.
      */
     protected function resolveSingleDep(ContainerInterface $c, $dep)
     {
-        return $dep instanceof Service
+        return is_callable($dep)
             ? $dep($c)
             : $c->get($dep);
     }

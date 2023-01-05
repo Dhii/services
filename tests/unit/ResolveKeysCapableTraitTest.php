@@ -37,16 +37,24 @@ class ResolveKeysCapableTraitTest extends TestCase
         $container = $this->getMockForAbstractClass(ContainerInterface::class);
 
         // The service dependency
-        $depValue = new \stdClass();
+        $depValue1 = new \stdClass();
         $depService = $this->getMockForAbstractClass(Service::class, [[$keys[1]]]);
         $depService->expects(static::once())
             ->method('__invoke')
             ->with($container)
-            ->willReturnCallback(function (ContainerInterface $c) use ($depValue, $keys) {
+            ->willReturnCallback(function (ContainerInterface $c) use ($depValue1) {
                // Simulate dependency
-               $c->get($keys[1]);
-               return $depValue;
+               $c->get('bar');
+               return $depValue1;
             });
+
+        // The callable dependency
+        $depValue2 = new \stdClass();
+        $depCallable = function (ContainerInterface $c) use ($depValue2) {
+            // Simulate dependency
+            $c->get('baz');
+            return $depValue2;
+        };
 
         // The container mock
         $container = $this->getMockForAbstractClass(ContainerInterface::class);
@@ -60,9 +68,9 @@ class ResolveKeysCapableTraitTest extends TestCase
         $method = AccessibleMethod::create($subject, 'resolveDeps');
 
         // The test
-        $args = ['foo', $depService, 'baz'];
-        $result = $method($container, $args);
-        $expected = [$values[0], $depValue, $values[2]];
+        $deps = ['foo', $depService, $depCallable];
+        $result = $method($container, $deps);
+        $expected = [$values[0], $depValue1, $depValue2];
 
         static::assertEquals($expected, $result);
     }

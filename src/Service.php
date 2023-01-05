@@ -25,14 +25,14 @@ use UnexpectedValueException;
 abstract class Service
 {
     /**
-     * @var array<string|Service>
+     * @var array<string|callable>
      */
     protected $dependencies;
 
     /**
      * Constructor.
      *
-     * @param array<string|Service> $dependencies A list of dependencies, as either a {@link Service} instance or a key.
+     * @param array<string|callable> $dependencies A list of dependencies, where each is a callable definition or a key.
      */
     public function __construct(array $dependencies)
     {
@@ -42,7 +42,7 @@ abstract class Service
     /**
      * Retrieves the keys of dependent services.
      *
-     * @return array<string|Service> A list containing a mix of {@link Service} instances and string key.
+     * @return array<string|callable> A list containing a mix of callable definitions and string keys.
      */
     public function getDependencies(): array
     {
@@ -52,7 +52,7 @@ abstract class Service
     /**
      * Creates a copy of this service with different dependency keys.
      *
-     * @param array<string|Service> $dependencies A list of dependencies, as either a {@link Service} instance or a key.
+     * @param array<string|callable> $dependencies A list of dependencies, where each is a callable definition or a key.
      *
      * @return static The newly created service instance.
      */
