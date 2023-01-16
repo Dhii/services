@@ -6,6 +6,11 @@ namespace Dhii\Services;
 
 use Psr\Container\ContainerInterface;
 
+/**
+ * Functionality for resolving a service key.
+ *
+ * @psalm-type ServiceRef = string|callable(ContainerInterface): mixed
+ */
 trait ResolveKeysCapableTrait
 {
     /**
@@ -13,8 +18,9 @@ trait ResolveKeysCapableTrait
      *
      * @deprecated Use {@see resolveDeps()} instead.
      *
-     * @param ContainerInterface $c    The container to use for service resolution.
-     * @param array<string>      $keys The services keys to resolve.
+     * @param ContainerInterface      $c    The container to use for service resolution.
+     * @param array<string|callable>  $keys The services keys to resolve.
+     * @psalm-param array<ServiceRef> $keys
      *
      * @return array<int,mixed> A list containing the resolved service values, in the same order as in $keys.
      */
@@ -28,6 +34,7 @@ trait ResolveKeysCapableTrait
      *
      * @param ContainerInterface     $c    The container to use for service resolution.
      * @param array<string|callable> $deps The list of dependencies, where each is either a callable definitions or key.
+     * @psalm-param ServiceRef       $deps
      *
      * @return array<string,mixed> A map of specified service keys to their resolved values,
      *                             in the same order as in $keys.
@@ -47,6 +54,7 @@ trait ResolveKeysCapableTrait
      *
      * @param ContainerInterface  $c   The container to use for service resolution.
      * @param string|callable     $dep The service definition, or its key.
+     * @psalm-param ServiceRef    $dep
      *
      * @return mixed The resolved service value.
      */

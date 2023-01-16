@@ -21,11 +21,14 @@ use UnexpectedValueException;
  *
  * @see   __invoke()
  * @see   ContainerInterface
+ *
+ * @psalm-import-type ServiceRef from ResolveKeysCapableTrait
  */
 abstract class Service
 {
     /**
      * @var array<string|callable>
+     * @psalm-var ServiceRef[]
      */
     protected $dependencies;
 
@@ -33,6 +36,7 @@ abstract class Service
      * Constructor.
      *
      * @param array<string|callable> $dependencies A list of dependencies, where each is a callable definition or a key.
+     * @psalm-param ServiceRef[]     $dependencies
      */
     public function __construct(array $dependencies)
     {
@@ -43,6 +47,7 @@ abstract class Service
      * Retrieves the keys of dependent services.
      *
      * @return array<string|callable> A list containing a mix of callable definitions and string keys.
+     * @psalm-return ServiceRef[]
      */
     public function getDependencies(): array
     {
@@ -53,6 +58,7 @@ abstract class Service
      * Creates a copy of this service with different dependency keys.
      *
      * @param array<string|callable> $dependencies A list of dependencies, where each is a callable definition or a key.
+     * @psalm-param ServiceRef[]     $dependencies
      *
      * @return static The newly created service instance.
      */
