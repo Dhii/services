@@ -36,8 +36,7 @@ trait ResolveKeysCapableTrait
      * @param array<string|callable> $deps The list of dependencies, where each is either a callable definitions or key.
      * @psalm-param ServiceRef[]     $deps
      *
-     * @return array<string,mixed> A map of specified service keys to their resolved values,
-     *                             in the same order as in $keys.
+     * @return array<int,mixed> A list containing the resolved dependencies, in the same order as given in $keys.
      */
     protected function resolveDeps(ContainerInterface $c, array $deps): array
     {
