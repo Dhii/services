@@ -9,7 +9,7 @@ use Psr\Container\ContainerInterface;
 /**
  * Functionality for resolving a service key.
  *
- * @psalm-type ServiceRef = string|callable(ContainerInterface): mixed
+ * @psalm-import-type ServiceRef from Service
  */
 trait ResolveKeysCapableTrait
 {

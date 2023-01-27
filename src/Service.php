@@ -22,7 +22,7 @@ use UnexpectedValueException;
  * @see   __invoke()
  * @see   ContainerInterface
  *
- * @psalm-import-type ServiceRef from ResolveKeysCapableTrait
+ * @psalm-type ServiceRef = string|callable(ContainerInterface): mixed
  */
 abstract class Service
 {
