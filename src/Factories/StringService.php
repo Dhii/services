@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dhii\Services\Factories;
 
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 
@@ -24,6 +25,8 @@ use Psr\Container\ContainerInterface;
  */
 class StringService extends Service
 {
+    use ResolveKeysCapableTrait;
+
     /** @var string */
     protected $format;
 
@@ -54,7 +57,7 @@ class StringService extends Service
         $replace = [];
         foreach ($this->dependencies as $idx => $dependency) {
             $idx = (string) $idx;
-            $replace['{' . $idx . '}'] = strval($c->get($dependency));
+            $replace['{' . $idx . '}'] = (string) $this->resolveSingleDep($c, $dependency);
         }
 
         return strtr($this->format, $replace);
