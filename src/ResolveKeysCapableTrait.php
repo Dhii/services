@@ -34,7 +34,7 @@ trait ResolveKeysCapableTrait
      *
      * @param ContainerInterface     $c    The container to use for service resolution.
      * @param array<string|callable> $deps The list of dependencies, where each is either a callable definitions or key.
-     * @psalm-param ServiceRef       $deps
+     * @psalm-param ServiceRef[]     $deps
      *
      * @return array<string,mixed> A map of specified service keys to their resolved values,
      *                             in the same order as in $keys.
