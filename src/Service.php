@@ -22,7 +22,8 @@ use UnexpectedValueException;
  * @see   __invoke()
  * @see   ContainerInterface
  *
- * @psalm-type ServiceRef = string|callable(ContainerInterface): mixed
+ * @psalm-type ServiceFactory = callable(ContainerInterface): mixed
+ * @psalm-type ServiceRef = string|ServiceFactory
  */
 abstract class Service
 {
