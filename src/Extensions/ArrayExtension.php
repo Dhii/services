@@ -46,7 +46,7 @@ class ArrayExtension extends Service
     /**
      * @inheritDoc
      */
-    public function __invoke(ContainerInterface $c, $prev = [])
+    public function __invoke(ContainerInterface $c, array $prev = [])
     {
         return array_merge($prev, $this->resolveKeys($c, $this->dependencies));
     }

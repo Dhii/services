@@ -4,7 +4,6 @@
         xmlns="https://getpsalm.org/schema/config"
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
         xmlns:xi="http://www.w3.org/2001/XInclude"
-        totallyTyped="false"
         useDocblockTypes="true"
         usePhpDocMethodsWithoutMagicCall="false"
         strictBinaryOperands="true"
@@ -24,13 +23,6 @@
     <projectFiles>
         <directory name="src"/>
     </projectFiles>
-
-    <extraFiles>
-        <ignoreFiles>
-            <directory name="vendor/phpspec/prophecy"/>
-        </ignoreFiles>
-    </extraFiles>
-
 
     <issueHandlers>
         <ConflictingReferenceConstraint errorLevel="error"/>
