@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+
+## [0.1.1-alpha3] - 2023-02-01
 ### Changed
 - The `Constructor`, `FuncService`, `ServiceList`, `StringService`, `Extension`, and `ArrayExtension` services now
   accept other service instances as dependencies, in addition to strings (#14).
