@@ -47,7 +47,7 @@ class Constructor extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = $this->resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveDeps($c, $this->dependencies);
         $className = $this->className;
 
         return new $className(...$deps);

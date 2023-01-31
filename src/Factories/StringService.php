@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dhii\Services\Factories;
 
+use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
 use Psr\Container\ContainerInterface;
 use UnexpectedValueException;
@@ -22,9 +23,13 @@ use UnexpectedValueException;
  *      ]),
  *  ]
  *  ```
+ *
+ * @psalm-import-type ServiceRef from Service
  */
 class StringService extends Service
 {
+    use ResolveKeysCapableTrait;
+
     /** @var string */
     protected $format;
 
@@ -46,16 +51,16 @@ class StringService extends Service
     /**
      * Retrieve a service _as a string_ with the specified name from the given container.
      *
-     * @param string $serviceName Name of the service to retrieve.
+     * @param ServiceRef $serviceRef The service, or its name in the container..
      * @param ContainerInterface $c The container to retrieve the service from.
      *
      * @return string The string representation of the service.
      *
      * @throws UnexpectedValueException If service could be converted to string.
      */
-    protected function resolveString(string $serviceName, ContainerInterface $c): string
+    protected function resolveString($serviceRef, ContainerInterface $c): string
     {
-        $service = $c->get($serviceName);
+        $service = $this->resolveSingleDep($c, $serviceRef);
 
         if (!is_null($service) && !is_scalar($service) && !is_object($service)) {
             throw new UnexpectedValueException(sprintf(
@@ -64,9 +69,7 @@ class StringService extends Service
             ));
         }
 
-        $value = strval($service);
-
-        return $value;
+        return strval($service);
     }
 
     /**

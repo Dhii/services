@@ -59,7 +59,7 @@ class FuncService extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = $this->resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveDeps($c, $this->dependencies);
 
         /**
          * @psalm-suppress MissingClosureReturnType Cannot declare mixed until PHP 8

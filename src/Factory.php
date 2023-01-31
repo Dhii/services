@@ -47,7 +47,7 @@ class Factory extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        $deps = $this->resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveDeps($c, $this->dependencies);
 
         return ($this->definition)(...$deps);
     }

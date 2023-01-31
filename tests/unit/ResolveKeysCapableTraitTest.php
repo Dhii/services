@@ -24,31 +24,54 @@ class ResolveKeysCapableTraitTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @since [*next-version*]
-     */
-    public function testResolveKeys()
+    public function testResolveDeps()
     {
+        // Container state
         $services = [
             'foo' => 100,
             'bar' => 200,
             'baz' => 300,
         ];
-
         $keys = array_keys($services);
         $values = array_values($services);
-        $subject =  $this->createSubject();
+        $container = $this->getMockForAbstractClass(ContainerInterface::class);
 
-        /* @var $container MockObject&ContainerInterface */
+        // The service dependency
+        $depValue1 = new \stdClass();
+        $depService = $this->getMockForAbstractClass(Service::class, [[$keys[1]]]);
+        $depService->expects(static::once())
+            ->method('__invoke')
+            ->with($container)
+            ->willReturnCallback(function (ContainerInterface $c) use ($depValue1) {
+               // Simulate dependency
+               $c->get('bar');
+               return $depValue1;
+            });
+
+        // The callable dependency
+        $depValue2 = new \stdClass();
+        $depCallable = function (ContainerInterface $c) use ($depValue2) {
+            // Simulate dependency
+            $c->get('baz');
+            return $depValue2;
+        };
+
+        // The container mock
         $container = $this->getMockForAbstractClass(ContainerInterface::class);
         $container->expects(static::exactly(3))
-            ->method('get')
-            ->withConsecutive([$keys[0]], [$keys[1]], [$keys[2]])
-            ->willReturnOnConsecutiveCalls(...$values);
-        $method = AccessibleMethod::create($subject, 'resolveKeys');
+                  ->method('get')
+                  ->withConsecutive([$keys[0]], [$keys[1]], [$keys[2]])
+                  ->willReturnOnConsecutiveCalls(...$values);
+        
+        // The SUT
+        $subject =  $this->createSubject();
+        $method = AccessibleMethod::create($subject, 'resolveDeps');
 
-        $result = $method($container, $keys);
+        // The test
+        $deps = ['foo', $depService, $depCallable];
+        $result = $method($container, $deps);
+        $expected = [$values[0], $depValue1, $depValue2];
 
-        static::assertEquals($values, $result);
+        static::assertEquals($expected, $result);
     }
 }

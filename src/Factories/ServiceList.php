@@ -57,6 +57,6 @@ class ServiceList extends Service
      */
     public function __invoke(ContainerInterface $c)
     {
-        return $this->resolveKeys($c, $this->dependencies);
+        return $this->resolveDeps($c, $this->dependencies);
     }
 }

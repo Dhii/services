@@ -48,7 +48,7 @@ class Extension extends Service
      */
     public function __invoke(ContainerInterface $c, $prev = null)
     {
-        $deps = $this->resolveKeys($c, $this->dependencies);
+        $deps = $this->resolveDeps($c, $this->dependencies);
         array_unshift($deps, $prev);
 
         return ($this->definition)(...$deps);
