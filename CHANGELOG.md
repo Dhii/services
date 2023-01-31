@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Changed
+- The `Constructor`, `FuncService`, `ServiceList`, `StringService`, `Extension`, and `ArrayExtension` services now
+  accept other service instances as dependencies, in addition to strings (#14).
+- The `ResolveKeysCabableTrait::resolveKeys()` method is now deprecated. Clients should use the `resolveDeps()` method
+  instead (#14).
 
 ## [0.1.1-alpha2] - 2022-01-05
 ### Fixed
