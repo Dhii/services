@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Added
+- New `Instance` alias for the `Constructor` helper.
+- New `Callback` alias for the `FuncService` helper.
+- New `TemplatedStr` alias for the `StringService` helper.
 
 ## [0.1.1-alpha3] - 2023-02-01
 ### Added

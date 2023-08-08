@@ -3,6 +3,7 @@
 namespace Dhii\Services\Tests\Unit\Factories;
 
 use Dhii\Services\Factories\StringService;
+use Dhii\Services\Factories\TemplatedStr;
 use Dhii\Services\Service;
 use Dhii\Services\Tests\Helpers\MockContainer;
 use PHPUnit\Framework\TestCase;
@@ -19,6 +20,14 @@ class StringServiceTest extends TestCase
     public function testIsService()
     {
         static::assertInstanceOf(Service::class, new StringService(''));
+    }
+
+    /**
+     * @since [*next-version*]
+     */
+    public function testAlias()
+    {
+        static::assertInstanceOf(StringService::class, new TemplatedStr(''));
     }
 
     /**
