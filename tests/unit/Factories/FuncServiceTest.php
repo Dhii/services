@@ -2,6 +2,7 @@
 
 namespace Dhii\Services\Tests\Unit\Factories;
 
+use Dhii\Services\Factories\Callback;
 use Dhii\Services\Factories\FuncService;
 use Dhii\Services\Service;
 use Dhii\Services\Tests\Helpers\MockContainer;
@@ -22,6 +23,17 @@ class FuncServiceTest extends TestCase
         });
 
         static::assertInstanceOf(Service::class, $subject);
+    }
+
+    /**
+     * @since [*next-version*]
+     */
+    public function testAlias()
+    {
+        $subject = new Callback([], function () {
+        });
+
+        static::assertInstanceOf(FuncService::class, $subject);
     }
 
     /**

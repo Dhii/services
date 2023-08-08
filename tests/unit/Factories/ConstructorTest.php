@@ -3,6 +3,7 @@
 namespace Dhii\Services\Tests\Unit\Factories;
 
 use Dhii\Services\Factories\Constructor;
+use Dhii\Services\Factories\Instance;
 use Dhii\Services\Service;
 use Dhii\Services\Tests\Helpers\MockContainer;
 use Exception;
@@ -21,6 +22,14 @@ class ConstructorTest extends TestCase
     public function testIsService()
     {
         static::assertInstanceOf(Service::class, new Constructor(''));
+    }
+
+    /**
+     * @since [*next-version*]
+     */
+    public function testAlias()
+    {
+        static::assertInstanceOf(Constructor::class, new Instance(''));
     }
 
     /**
