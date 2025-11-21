@@ -136,5 +136,7 @@
         <MixedReturnStatement errorLevel="info"/>
         <MixedReturnTypeCoercion errorLevel="info"/>
         <MixedStringOffsetAssignment errorLevel="info"/>
+        <UnusedClass errorLevel="info"/>
+        <ClassMustBeFinal errorLevel="info"/>
     </issueHandlers>
 </psalm>
