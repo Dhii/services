@@ -22,9 +22,9 @@ use Psr\Container\ContainerInterface;
  * new Constructor(SomeClass::class, ['foo', 'bar']);
  * ```
  *
- * @see   Factory
+ * @see Factory
  *
- * @template T
+ * @template T as object
  *
  * @psalm-import-type ServiceRef from Service
  */
