@@ -128,7 +128,6 @@
         <MixedArrayTypeCoercion errorLevel="info"/>
         <MixedAssignment errorLevel="info"/>
         <MixedFunctionCall errorLevel="info"/>
-        <MixedInferredReturnType errorLevel="info"/>
         <MixedMethodCall errorLevel="info"/>
         <MixedOperand errorLevel="info"/>
         <MixedPropertyAssignment errorLevel="info"/>
