@@ -21,9 +21,9 @@ use Psr\Container\ContainerInterface;
  * new Constructor(SomeClass::class, ['foo', 'bar']);
  * ```
  *
- * @see   Factory
+ * @see Factory
  *
- * @template T
+ * @template T as object
  */
 class Constructor extends Service
 {
