@@ -2,7 +2,7 @@ ARG PHP_BUILD_VERSION
 ARG PHP_TEST_VERSION
 
 # Composer on correct PHP version
-FROM php:${PHP_BUILD_VERSION}-cli as build
+FROM php:${PHP_BUILD_VERSION}-cli AS build
 
 ARG BUILD_ROOT_PATH
 
@@ -17,12 +17,12 @@ WORKDIR ${BUILD_ROOT_PATH}
 COPY . ./
 
 
-FROM php:${PHP_TEST_VERSION}-cli as test
+FROM php:${PHP_TEST_VERSION}-cli AS test
 
 ARG BUILD_ROOT_PATH
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-RUN pecl install xdebug-2.6.0
+RUN pecl install xdebug-3.4.7
 RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install posix
 
@@ -31,7 +31,7 @@ COPY --from=build ${BUILD_ROOT_PATH} ${BUILD_ROOT_PATH}
 
 
 # Install PHP dev dependencies
-FROM build as vendor-dev
+FROM build AS vendor-dev
 
 ARG BUILD_ROOT_PATH
 
