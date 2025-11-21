@@ -136,7 +136,10 @@
         <MixedReturnStatement errorLevel="info"/>
         <MixedReturnTypeCoercion errorLevel="info"/>
         <MixedStringOffsetAssignment errorLevel="info"/>
-        <UnusedClass errorLevel="info"/>
-        <ClassMustBeFinal errorLevel="info"/>
+        <MissingOverrideAttribute errorLevel="info"/>
+
+        <UnusedClass errorLevel="suppress"/>
+        <ClassMustBeFinal errorLevel="suppress"/>
+        <PossiblyUnusedMethod errorLevel="suppress"/>
     </issueHandlers>
 </psalm>
