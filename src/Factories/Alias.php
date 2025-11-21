@@ -30,8 +30,7 @@ use Psr\Container\NotFoundExceptionInterface;
  */
 class Alias extends Service
 {
-    /** @var string */
-    protected $key;
+    protected string $key;
 
     /** @var callable|null */
     protected $default;

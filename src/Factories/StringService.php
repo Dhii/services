@@ -30,8 +30,7 @@ class StringService extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /** @var string */
-    protected $format;
+    protected string $format;
 
     /**
      * @inheritDoc

@@ -27,8 +27,7 @@ class Constructor extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /** @var string */
-    protected $className;
+    protected string $className;
 
     /**
      * @inheritDoc

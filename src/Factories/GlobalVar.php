@@ -24,8 +24,7 @@ use Psr\Container\ContainerInterface;
  */
 class GlobalVar extends Service
 {
-    /** @var string */
-    protected $name;
+    protected string $name;
 
     /**
      * Constructor.
