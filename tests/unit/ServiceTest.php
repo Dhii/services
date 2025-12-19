@@ -19,7 +19,12 @@ class ServiceTest extends TestCase
      */
     public function testIsCallable()
     {
-        $service = $this->getMockForAbstractClass(Service::class, [[]]);
+        $service = $this->getMockBuilder(Service::class)
+            ->setConstructorArgs([[]])
+            ->onlyMethods(['__invoke'])
+            ->getMock();
+
+        $service->method('__invoke');
 
         $this->assertIsCallable($service);
     }
@@ -38,8 +43,8 @@ class ServiceTest extends TestCase
         /* @var $service MockObject&Service */
         $service = $this->getMockBuilder(Service::class)
                         ->setConstructorArgs([$deps])
-                        ->setMethods(['__invoke'])
-                        ->getMockForAbstractClass();
+                        ->onlyMethods(['__invoke'])
+                        ->getMock();
 
         static::assertEquals($deps, $service->getDependencies());
     }
@@ -55,7 +60,8 @@ class ServiceTest extends TestCase
         /* @var $oldService MockObject&Service */
         $oldService = $this->getMockBuilder(Service::class)
                         ->setConstructorArgs([$oldDeps])
-                        ->getMockForAbstractClass();
+                        ->onlyMethods(['__invoke'])
+                        ->getMock();
 
         /* @var $newService MockObject&Service */
         $newService = $oldService->withDependencies($newDeps);

@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     colors="true"
     bootstrap="tests/bootstrap.php"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+    cacheDirectory=".phpunit.cache"
 >
-    <php>
-        <ini name="display_errors" value="1" />
-        <ini name="display_startup_errors" value="1" />
-    </php>
-    <testsuites>
-        <testsuite name="unit">
-            <directory>tests/unit</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
+  <php>
+    <ini name="display_errors" value="1" />
+    <ini name="display_startup_errors" value="1" />
+  </php>
+  <testsuites>
+    <testsuite name="unit">
+      <directory>tests/unit</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </source>
 </phpunit>

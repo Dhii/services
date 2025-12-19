@@ -7,7 +7,6 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/helpers" isTestSource="true" packagePrefix="Dhii\Services\Tests\Helpers\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/stubs" isTestSource="true" packagePrefix="Dhii\Services\Tests\Stubs\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/unit" isTestSource="true" packagePrefix="Dhii\Services\Tests\Unit\" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />

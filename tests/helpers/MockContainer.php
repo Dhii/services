@@ -26,7 +26,7 @@ class MockContainer
      */
     public static function create(TestCase $tCase)
     {
-        return $tCase->getMockBuilder(ContainerInterface::class)->getMockForAbstractClass();
+        return $tCase->getMockBuilder(ContainerInterface::class)->getMock();
     }
 
     /**
@@ -42,13 +42,19 @@ class MockContainer
     public static function with(TestCase $tCase, array $services)
     {
         $keys = array_keys($services);
-        $values = array_values($services);
-
         $container = static::create($tCase);
 
         $container->method('get')
-                  ->withConsecutive(...array_chunk($keys, 1))
-                  ->willReturnOnConsecutiveCalls(...$values);
+            ->willReturnCallback(function (string $key) use ($services) {
+                if (!array_key_exists($key, $services)) {
+                    throw new class (sprintf('Service "%1$s" not found', $key))
+                        extends Exception
+                        implements NotFoundExceptionInterface {
+                    };
+                }
+
+                return $services[$key];
+            });
 
         $container->method('has')
                   ->willReturnCallback(function ($key) use ($keys) {
