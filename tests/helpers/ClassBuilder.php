@@ -14,13 +14,15 @@ class ClassBuilder
     /**
      * @param class-string $classNamePrefix
      */
-    public function __construct(protected string $classNamePrefix = 'Class_')
-    {
+    public function __construct(
+        protected string $classNamePrefix = 'Class_',
+        protected bool $isAutoload = false,
+    ) {
     }
 
     public function createClass(): string
     {
-        $className = $this->createUniqueClassName();
+        $className = $this->createUniqueClassName($this->extends ? (string) $this->extends : $this->classNamePrefix);
         $classCode = $this->buildClassCode($className, $this->extends, $this->implements, $this->uses);
         eval($classCode);
 
@@ -88,15 +90,21 @@ class ClassBuilder
         return "class $className $extendsClause $implementsClause { $useClause }";
     }
 
-    protected function createUniqueClassName(): string
+    /**
+     * Creates a unique classname.
+     */
+    protected function createUniqueClassName(string $prefix = '', bool $isAutoload = false): string
     {
-        $nameExists = fn(string $name) => class_exists($name)
-            || interface_exists($name)
-            || trait_exists($name)
-            || enum_exists($name);
+        $prefix = trim($prefix);
+        $prefix = empty($prefix) ? 'Class_' : $prefix;
+
+        $nameExists = fn(string $name) => class_exists($name, $isAutoload)
+            || interface_exists($name, $isAutoload)
+            || trait_exists($name, $isAutoload)
+            || enum_exists($name, $isAutoload);
 
         do {
-            $className = uniqid($this->classNamePrefix);
+            $className = uniqid($prefix);
         } while ($nameExists($className));
 
         return $className;
