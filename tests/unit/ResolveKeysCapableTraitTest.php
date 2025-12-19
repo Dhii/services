@@ -19,7 +19,7 @@ class ResolveKeysCapableTraitTest extends TestCase
      */
     protected function createSubject(): MockObject
     {
-        $mock = $this->getMockBuilder((new ClassBuilder())->createClass(uses: [Subject::class]))
+        $mock = $this->getMockBuilder((new ClassBuilder())->withUses([Subject::class])->createClass())
             ->getMock();
 
         return $mock;
