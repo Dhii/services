@@ -27,6 +27,11 @@ class ClassBuilder
         return $className;
     }
 
+    public function __toString(): string
+    {
+        return $this->createClass();
+    }
+
     /**
      * @param ?class-string $extends
      */

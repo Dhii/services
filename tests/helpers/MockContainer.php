@@ -47,10 +47,9 @@ class MockContainer
         $container->method('get')
             ->willReturnCallback(function (string $key) use ($services) {
                 if (!array_key_exists($key, $services)) {
-                    throw new ((new ClassBuilder())
+                    throw new ((string) (new ClassBuilder())
                         ->withExtends(Exception::class)
                         ->withImplements([NotFoundExceptionInterface::class])
-                        ->createClass()
                     )();
                 }
 
