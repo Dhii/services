@@ -22,7 +22,7 @@ class ClassBuilder
 
     public function createClass(): string
     {
-        $className = $this->createUniqueClassName($this->extends ? (string) $this->extends : $this->classNamePrefix);
+        $className = $this->createUniqueClassName($this->extends ?? $this->classNamePrefix);
         $classCode = $this->buildClassCode($className, $this->extends, $this->implements, $this->uses);
         eval($classCode);
 
