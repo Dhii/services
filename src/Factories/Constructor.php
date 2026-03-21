@@ -63,6 +63,7 @@ class Constructor extends Service
         $deps = $this->resolveDeps($c, $this->dependencies);
         $className = $this->className;
 
+        /** @psalm-suppress MixedMethodCall Cannot guarantee any particular class, just that it's a class */
         return new $className(...$deps);
     }
 }
