@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+### Added
+- Support for `psr/container:^2.0` (#22). 
+
 ### Changed
 - Drop PHP 7 and PHP 8.0 support, now requires PHP 8.1+ (#23). 
 - Service resolution now preserves keys, unless expected otherwise (#24).
