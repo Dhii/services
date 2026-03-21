@@ -24,6 +24,8 @@ use Psr\Container\ContainerInterface;
  * ```
  *
  * @see Factory For a similar implementation that does not accept a previous service value.
+ *
+ * @phpstan-import-type ServiceRef from Service
  */
 class Extension extends Service
 {
@@ -35,6 +37,7 @@ class Extension extends Service
     /**
      * @inheritDoc
      *
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      * @param callable $definition The extension definition.
      */
     public function __construct(array $dependencies, callable $definition)
@@ -45,9 +48,11 @@ class Extension extends Service
 
     /**
      * @inheritDoc
+     *
+     * @param mixed $prev The original value, if any.
      */
     #[\Override]
-    public function __invoke(ContainerInterface $c, $prev = null)
+    public function __invoke(ContainerInterface $c, mixed $prev = null): mixed
     {
         $deps = $this->resolveDeps($c, $this->dependencies);
         array_unshift($deps, $prev);
