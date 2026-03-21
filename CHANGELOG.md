@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [[*next-version*]] - YYYY-MM-DD
 ### Changed
 - Drop PHP 7 and PHP 8.0 support, now requires PHP 8.1+ (#23). 
+- Service resolution now preserves keys, unless expected otherwise (#24).
+
+### Deprecated
+- `ServiceList` deprecated in favour of new `ServiceMap` (#24).
 
 ## [0.1.1-alpha3] - 2023-02-01
 ### Added
