@@ -22,6 +22,8 @@ use Psr\Container\ContainerInterface;
  * ```
  *
  * @see   Factory
+ *
+ * @psalm-import-type ServiceRef from Service
  */
 class Constructor extends Service
 {
@@ -33,6 +35,7 @@ class Constructor extends Service
      * @inheritDoc
      *
      * @param string $className The name of the class whose constructor to invoke.
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      */
     public function __construct(string $className, array $dependencies = [])
     {
