@@ -53,6 +53,27 @@ class ServiceListTest extends TestCase
         static::assertEquals($values, $result);
     }
 
+    public function testInvokeAssoc()
+    {
+        $services = [
+            'foo' => 'hello',
+            'bar' => 'world',
+        ];
+
+        $map = array_combine([
+            'alpha',
+            'beta',
+        ], array_keys($services));
+        $values = array_values($services);
+
+        $container = MockContainer::with($this, $services);
+
+        $subject = new ServiceList($map);
+        $result = $subject($container);
+
+        static::assertEquals(array_combine($map, $values), $result);
+    }
+
     /**
      * @since [*next-version*]
      */
