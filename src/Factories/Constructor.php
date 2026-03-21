@@ -7,6 +7,7 @@ namespace Dhii\Services\Factories;
 use Dhii\Services\Factory;
 use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -22,18 +23,20 @@ use Psr\Container\ContainerInterface;
  * ```
  *
  * @see   Factory
+ *
+ * @psalm-import-type ServiceRef from Service
  */
 class Constructor extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /** @var string */
-    protected $className;
+    protected string $className;
 
     /**
      * @inheritDoc
      *
      * @param string $className The name of the class whose constructor to invoke.
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      */
     public function __construct(string $className, array $dependencies = [])
     {
@@ -44,7 +47,10 @@ class Constructor extends Service
 
     /**
      * @inheritDoc
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         $deps = $this->resolveDeps($c, $this->dependencies);

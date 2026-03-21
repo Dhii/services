@@ -36,7 +36,6 @@
         <FalsableReturnStatement errorLevel="error"/>
         <FalseOperand errorLevel="error"/>
         <ForbiddenCode errorLevel="error"/>
-        <ForbiddenEcho errorLevel="error"/>
         <InaccessibleClassConstant errorLevel="error"/>
         <InaccessibleMethod errorLevel="error"/>
         <InterfaceInstantiation errorLevel="error"/>
@@ -129,7 +128,6 @@
         <MixedArrayTypeCoercion errorLevel="info"/>
         <MixedAssignment errorLevel="info"/>
         <MixedFunctionCall errorLevel="info"/>
-        <MixedInferredReturnType errorLevel="info"/>
         <MixedMethodCall errorLevel="info"/>
         <MixedOperand errorLevel="info"/>
         <MixedPropertyAssignment errorLevel="info"/>
@@ -138,5 +136,10 @@
         <MixedReturnStatement errorLevel="info"/>
         <MixedReturnTypeCoercion errorLevel="info"/>
         <MixedStringOffsetAssignment errorLevel="info"/>
+        <MissingOverrideAttribute errorLevel="info"/>
+
+        <UnusedClass errorLevel="suppress"/>
+        <ClassMustBeFinal errorLevel="suppress"/>
+        <PossiblyUnusedMethod errorLevel="suppress"/>
     </issueHandlers>
 </psalm>

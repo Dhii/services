@@ -6,6 +6,7 @@ namespace Dhii\Services\Factories;
 
 use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -35,6 +36,7 @@ use Psr\Container\ContainerInterface;
  * $fn($arg1, $arg2);
  * ```
  *
+ * @psalm-import-type ServiceRef from Service
  */
 class FuncService extends Service
 {
@@ -46,6 +48,7 @@ class FuncService extends Service
     /**
      * @inheritDoc
      *
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      * @param callable $function The function to return when the service is created.
      */
     public function __construct(array $dependencies, callable $function)
@@ -57,8 +60,11 @@ class FuncService extends Service
     /**
      * @inheritDoc
      * @return callable
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
-    public function __invoke(ContainerInterface $c)
+    #[\Override]
+    public function __invoke(ContainerInterface $c): callable
     {
         $deps = $this->resolveDeps($c, $this->dependencies);
 

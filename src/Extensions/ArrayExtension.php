@@ -6,6 +6,7 @@ namespace Dhii\Services\Extensions;
 
 use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -45,7 +46,10 @@ class ArrayExtension extends Service
 
     /**
      * @inheritDoc
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c, array $prev = [])
     {
         return array_merge($prev, $this->resolveDeps($c, $this->dependencies));

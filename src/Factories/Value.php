@@ -32,6 +32,7 @@ class Value extends Service
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         return $this->value;

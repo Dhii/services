@@ -5,8 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
-### Fixed
-- Declare missing return type for `FuncService` (#11). 
+### Changed
+- Drop PHP 7 and PHP 8.0 support, now requires PHP 8.1+ (#23). 
 
 ## [0.1.1-alpha3] - 2023-02-01
 ### Added

@@ -6,6 +6,7 @@ namespace Dhii\Services\Factories;
 
 use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use UnexpectedValueException;
 
@@ -30,8 +31,7 @@ class StringService extends Service
 {
     use ResolveKeysCapableTrait;
 
-    /** @var string */
-    protected $format;
+    protected string $format;
 
     /**
      * @inheritDoc
@@ -40,6 +40,7 @@ class StringService extends Service
      *                       string value of the resolved dependency at the index indicated by that substring. The index
      *                       may be either numerical (for positional dependency arrays), or a string (for associative
      *                       dependency arrays).
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      */
     public function __construct(string $format, array $dependencies = [])
     {
@@ -57,6 +58,7 @@ class StringService extends Service
      * @return string The string representation of the service.
      *
      * @throws UnexpectedValueException If service could be converted to string.
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
     protected function resolveString($serviceRef, ContainerInterface $c): string
     {
@@ -75,6 +77,7 @@ class StringService extends Service
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         if (empty($this->dependencies)) {

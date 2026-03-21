@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dhii\Services;
 
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -16,13 +17,13 @@ trait ResolveKeysCapableTrait
     /**
      * Resolves a set of service keys using a given container.
      *
-     * @deprecated Use {@see resolveDeps()} instead.
-     *
      * @param ContainerInterface      $c    The container to use for service resolution.
      * @param array<string|callable>  $keys The services keys to resolve.
      * @psalm-param array<ServiceRef> $keys
      *
      * @return array<int,mixed> A list containing the resolved service values, in the same order as in $keys.
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
     protected function resolveKeys(ContainerInterface $c, array $keys): array
     {
@@ -37,11 +38,14 @@ trait ResolveKeysCapableTrait
      * @psalm-param ServiceRef[]     $deps
      *
      * @return array<int,mixed> A list containing the resolved dependencies, in the same order as given in $keys.
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
     protected function resolveDeps(ContainerInterface $c, array $deps): array
     {
         $result = [];
         foreach ($deps as $dep) {
+            /** @psalm-suppress MixedAssignment We can't know the type that will be resolved */
             $result[] = $this->resolveSingleDep($c, $dep);
         }
 
@@ -56,8 +60,10 @@ trait ResolveKeysCapableTrait
      * @psalm-param ServiceRef    $dep
      *
      * @return mixed The resolved service value.
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
-    protected function resolveSingleDep(ContainerInterface $c, $dep)
+    protected function resolveSingleDep(ContainerInterface $c, string|callable $dep): mixed
     {
         return is_callable($dep)
             ? $dep($c)

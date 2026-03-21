@@ -5,6 +5,7 @@ namespace Dhii\Services\Tests\Unit;
 use Dhii\Services\ResolveKeysCapableTrait as Subject;
 use Dhii\Services\Service;
 use Dhii\Services\Tests\Helpers\AccessibleMethod;
+use Dhii\Services\Tests\Helpers\ClassBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -18,8 +19,8 @@ class ResolveKeysCapableTraitTest extends TestCase
      */
     protected function createSubject(): MockObject
     {
-        $mock = $this->getMockBuilder(Subject::class)
-            ->getMockForTrait();
+        $mock = $this->getMockBuilder((string) (new ClassBuilder())->withUses([Subject::class]))
+            ->getMock();
 
         return $mock;
     }
@@ -34,11 +35,13 @@ class ResolveKeysCapableTraitTest extends TestCase
         ];
         $keys = array_keys($services);
         $values = array_values($services);
-        $container = $this->getMockForAbstractClass(ContainerInterface::class);
+        $container = $this->getMockBuilder(ContainerInterface::class)->getMock();
 
         // The service dependency
         $depValue1 = new \stdClass();
-        $depService = $this->getMockForAbstractClass(Service::class, [[$keys[1]]]);
+        $depService = $this->getMockBuilder(Service::class)
+            ->setConstructorArgs([[$keys[1]]])
+            ->getMock();
         $depService->expects(static::once())
             ->method('__invoke')
             ->with($container)
@@ -57,11 +60,16 @@ class ResolveKeysCapableTraitTest extends TestCase
         };
 
         // The container mock
-        $container = $this->getMockForAbstractClass(ContainerInterface::class);
-        $container->expects(static::exactly(3))
-                  ->method('get')
-                  ->withConsecutive([$keys[0]], [$keys[1]], [$keys[2]])
-                  ->willReturnOnConsecutiveCalls(...$values);
+        $container = $this->getMockBuilder(ContainerInterface::class)
+            ->getMock();
+        $i = $this->exactly(count($services));
+        $container->expects($i)
+            ->method('get')
+            ->willReturnCallback(function (string $key) use ($i, $keys) {
+              $iCount = $i->numberOfInvocations();
+              $this->assertEquals($keys[$iCount - 1], $key);
+            })
+            ->willReturnOnConsecutiveCalls(...$values);
         
         // The SUT
         $subject =  $this->createSubject();

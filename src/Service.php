@@ -31,7 +31,7 @@ abstract class Service
      * @var array<string|callable>
      * @psalm-var ServiceRef[]
      */
-    protected $dependencies;
+    protected array $dependencies;
 
     /**
      * Constructor.
