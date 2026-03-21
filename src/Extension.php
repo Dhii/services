@@ -57,7 +57,7 @@ class Extension extends Service
     #[\Override]
     public function __invoke(ContainerInterface $c, mixed $prev = null): mixed
     {
-        $deps = $this->resolveDeps($c, $this->dependencies);
+        $deps = array_values($this->resolveDeps($c, $this->dependencies));
         array_unshift($deps, $prev);
 
         return ($this->definition)(...$deps);

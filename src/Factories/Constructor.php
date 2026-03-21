@@ -60,7 +60,7 @@ class Constructor extends Service
     #[\Override]
     public function __invoke(ContainerInterface $c): object
     {
-        $deps = $this->resolveDeps($c, $this->dependencies);
+        $deps = array_values($this->resolveDeps($c, $this->dependencies));
         $className = $this->className;
 
         /** @psalm-suppress MixedMethodCall Cannot guarantee any particular class, just that it's a class */

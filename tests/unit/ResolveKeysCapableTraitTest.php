@@ -76,9 +76,9 @@ class ResolveKeysCapableTraitTest extends TestCase
         $method = AccessibleMethod::create($subject, 'resolveDeps');
 
         // The test
-        $deps = ['foo', $depService, $depCallable];
+        $deps = ['a' => 'foo', 'b' => $depService, 'c' => $depCallable];
         $result = $method($container, $deps);
-        $expected = [$values[0], $depValue1, $depValue2];
+        $expected = ['a' => $values[0], 'b' => $depValue1, 'c' => $depValue2];
 
         static::assertEquals($expected, $result);
     }

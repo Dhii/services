@@ -49,14 +49,13 @@ class ArrayExtensionTest extends TestCase
         ];
 
         $keys = array_keys($services);
-        $values = array_values($services);
 
         $container = MockContainer::with($this, $services);
 
         $subject = new ArrayExtension($keys);
         $result = $subject($container, $prev);
 
-        static::assertEquals(array_merge($prev, $values), $result);
+        static::assertEquals(array_merge($prev, $services), $result);
     }
 
     /**
