@@ -22,7 +22,9 @@ use Psr\Container\ContainerInterface;
  * new Constructor(SomeClass::class, ['foo', 'bar']);
  * ```
  *
- * @see   Factory
+ * @see Factory
+ *
+ * @template T as object
  *
  * @psalm-import-type ServiceRef from Service
  */
@@ -30,12 +32,13 @@ class Constructor extends Service
 {
     use ResolveKeysCapableTrait;
 
+    /** @var class-string<T> */
     protected string $className;
 
     /**
      * @inheritDoc
      *
-     * @param string $className The name of the class whose constructor to invoke.
+     * @param class-string<T> $className The name of the class whose constructor to invoke.
      * @param array<ServiceRef> $dependencies A list of dependencies.
      */
     public function __construct(string $className, array $dependencies = [])
@@ -46,16 +49,21 @@ class Constructor extends Service
     }
 
     /**
-     * @inheritDoc
+     * Create the service from this definition.
+     *
+     * @param ContainerInterface $c The container to use for dependency resolution.
+     *
+     * @return T The new service.
      *
      * @throws ContainerExceptionInterface If problem resolving from container.
      */
     #[\Override]
-    public function __invoke(ContainerInterface $c)
+    public function __invoke(ContainerInterface $c): object
     {
         $deps = $this->resolveDeps($c, $this->dependencies);
         $className = $this->className;
 
+        /** @psalm-suppress MixedMethodCall Cannot guarantee any particular class, just that it's a class */
         return new $className(...$deps);
     }
 }
