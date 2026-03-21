@@ -50,7 +50,8 @@ class MockContainer
                     throw new ((string) (new ClassBuilder())
                         ->withExtends(Exception::class)
                         ->withImplements([NotFoundExceptionInterface::class])
-                    )();
+
+                    )("Key '{$key}' does not exist");
                 }
 
                 return $services[$key];
