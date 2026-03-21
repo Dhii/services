@@ -60,18 +60,18 @@ class ServiceListTest extends TestCase
             'bar' => 'world',
         ];
 
+        $values = array_values($services);
         $map = array_combine([
             'alpha',
             'beta',
         ], array_keys($services));
-        $values = array_values($services);
 
         $container = MockContainer::with($this, $services);
 
         $subject = new ServiceList($map);
         $result = $subject($container);
 
-        static::assertEquals(array_combine($map, $values), $result);
+        static::assertEquals(array_combine(array_keys($map), $values), $result);
     }
 
     /**
