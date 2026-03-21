@@ -39,6 +39,7 @@ class StringService extends Service
      *                       string value of the resolved dependency at the index indicated by that substring. The index
      *                       may be either numerical (for positional dependency arrays), or a string (for associative
      *                       dependency arrays).
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      */
     public function __construct(string $format, array $dependencies = [])
     {
