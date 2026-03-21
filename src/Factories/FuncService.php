@@ -35,6 +35,7 @@ use Psr\Container\ContainerInterface;
  * $fn($arg1, $arg2);
  * ```
  *
+ * @psalm-import-type ServiceRef from Service
  */
 class FuncService extends Service
 {
@@ -46,6 +47,7 @@ class FuncService extends Service
     /**
      * @inheritDoc
      *
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      * @param callable $function The function to return when the service is created.
      */
     public function __construct(array $dependencies, callable $function)
