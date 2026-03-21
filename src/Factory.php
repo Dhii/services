@@ -22,6 +22,8 @@ use Psr\Container\ContainerInterface;
  *
  * @see   Constructor For a similar implementation that automatically injects dependencies into constructors.
  * @see   Extension For a similar implementation that can be used with extension services.
+ *
+ * @psalm-import-type ServiceRef from Service
  */
 class Factory extends Service
 {
@@ -33,6 +35,7 @@ class Factory extends Service
     /**
      * @inheritDoc
      *
+     * @param array<ServiceRef> $dependencies A list of dependencies.
      * @param callable $definition The factory definition.
      */
     public function __construct(array $dependencies, callable $definition)
