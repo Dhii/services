@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dhii\Services\Factories;
 
 use Dhii\Services\Service;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -53,6 +54,8 @@ class Alias extends Service
 
     /**
      * @inheritDoc
+     *
+     * @throws ContainerExceptionInterface If problem retrieving aliased key from container.
      */
     #[\Override]
     public function __invoke(ContainerInterface $c)
