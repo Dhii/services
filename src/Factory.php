@@ -45,6 +45,7 @@ class Factory extends Service
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         $deps = $this->resolveDeps($c, $this->dependencies);

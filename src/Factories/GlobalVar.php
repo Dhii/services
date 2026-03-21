@@ -41,6 +41,7 @@ class GlobalVar extends Service
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         global ${$this->name};

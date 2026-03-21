@@ -18,7 +18,8 @@
     "require-dev": {
         "phpunit/phpunit": "^10.0",
         "vimeo/psalm": "^6.0",
-        "slevomat/coding-standard": "^6.0"
+        "slevomat/coding-standard": "^6.0",
+        "symfony/polyfill-php83": "^1.33"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +37,7 @@
     "scripts": {
         "test": "phpunit",
         "csfix": "php-cs-fixer fix -vvv",
-        "psalm": "psalm --show-info --threads=8 --diff"
+        "psalm": "psalm --threads=8 --diff"
     },
     "config": {
         "allow-plugins": {

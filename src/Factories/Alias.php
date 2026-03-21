@@ -54,6 +54,7 @@ class Alias extends Service
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         if (!$c->has($this->key) && $this->default !== null) {

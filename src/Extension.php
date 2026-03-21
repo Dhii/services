@@ -46,6 +46,7 @@ class Extension extends Service
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c, $prev = null)
     {
         $deps = $this->resolveDeps($c, $this->dependencies);

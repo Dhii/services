@@ -58,6 +58,7 @@ class FuncService extends Service
      * @inheritDoc
      * @return callable
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         $deps = $this->resolveDeps($c, $this->dependencies);

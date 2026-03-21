@@ -74,6 +74,7 @@ class StringService extends Service
     /**
      * @inheritDoc
      */
+    #[\Override]
     public function __invoke(ContainerInterface $c)
     {
         if (empty($this->dependencies)) {
