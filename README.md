@@ -22,7 +22,7 @@ This package provides a collection of service factory and extension definition i
 - [Static Analysis](#static-analysis)
 
 # Requirements
-- PHP >= 7.0 < PHP 8
+- PHP >= 8.1
 
 # Installation
 
