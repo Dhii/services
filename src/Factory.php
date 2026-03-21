@@ -54,7 +54,7 @@ class Factory extends Service
     #[\Override]
     public function __invoke(ContainerInterface $c)
     {
-        $deps = $this->resolveDeps($c, $this->dependencies);
+        $deps = array_values($this->resolveDeps($c, $this->dependencies));
 
         return ($this->definition)(...$deps);
     }

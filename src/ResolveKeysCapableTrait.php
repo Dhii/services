@@ -21,7 +21,7 @@ trait ResolveKeysCapableTrait
      * @param array<string|callable>  $keys The services keys to resolve.
      * @psalm-param array<ServiceRef> $keys
      *
-     * @return array<int,mixed> A list containing the resolved service values, in the same order as in $keys.
+     * @return array<array-key, mixed> A list containing the resolved service values, same order and keys as in $keys.
      *
      * @throws ContainerExceptionInterface If problem resolving from container.
      */
@@ -37,16 +37,17 @@ trait ResolveKeysCapableTrait
      * @param array<string|callable> $deps The list of dependencies, where each is either a callable definitions or key.
      * @psalm-param ServiceRef[]     $deps
      *
-     * @return array<int,mixed> A list containing the resolved dependencies, in the same order as given in $keys.
+     * @return array<array-key, mixed> A list containing the resolved service values, same order and keys as in $keys.
+     *  If a dep is scalar and the key isn't a srin
      *
      * @throws ContainerExceptionInterface If problem resolving from container.
      */
     protected function resolveDeps(ContainerInterface $c, array $deps): array
     {
         $result = [];
-        foreach ($deps as $dep) {
+        foreach ($deps as $key => $dep) {
             /** @psalm-suppress MixedAssignment We can't know the type that will be resolved */
-            $result[] = $this->resolveSingleDep($c, $dep);
+            $result[is_scalar($dep) && !is_string($key) ? strval($dep) : $key] = $this->resolveSingleDep($c, $dep);
         }
 
         return $result;

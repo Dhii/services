@@ -32,22 +32,7 @@ use Psr\Container\ContainerInterface;
  * $list = $c->get('list'); // [5, "hello", 1.61803]
  * ```
  *
- * The array of service keys may also be associative. The array keys will be preserved in the result.
- *
- * ```
- * [
- *      'foo' => Value(5),
- *      'bar' => Value("hello"),
- *
- *      'config' => new ServiceList([
- *          'num' => 'foo',
- *          'msg' => 'bar'
- *      ]),
- * ]
- *
- * $list = $c->get('list'); // ['num' => 5, 'msg' => "hello"]
- * ```
- *
+ * @deprecated Use {@see ServiceMap} with {@see array_values()} instead.
  */
 class ServiceList extends Service
 {
@@ -61,6 +46,6 @@ class ServiceList extends Service
     #[\Override]
     public function __invoke(ContainerInterface $c)
     {
-        return $this->resolveDeps($c, $this->dependencies);
+        return array_values($this->resolveDeps($c, $this->dependencies));
     }
 }

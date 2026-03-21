@@ -2,7 +2,7 @@
 
 namespace Dhii\Services\Tests\Unit\Factories;
 
-use Dhii\Services\Factories\ServiceList;
+use Dhii\Services\Factories\ServiceMap;
 use Dhii\Services\Service;
 use Dhii\Services\Tests\Helpers\MockContainer;
 use PHPUnit\Framework\TestCase;
@@ -11,14 +11,14 @@ use PHPUnit\Framework\TestCase;
  * @since [*next-version*]
  * @see   ServiceList
  */
-class ServiceListTest extends TestCase
+class ServiceMapTest extends TestCase
 {
     /**
      * @since [*next-version*]
      */
     public function testIsService()
     {
-        static::assertInstanceOf(Service::class, new ServiceList([]));
+        static::assertInstanceOf(Service::class, new ServiceMap([]));
     }
 
     /**
@@ -27,14 +27,11 @@ class ServiceListTest extends TestCase
     public function testGetDependencies()
     {
         $deps = ['foo', 'bar'];
-        $subject = new ServiceList($deps);
+        $subject = new ServiceMap($deps);
 
         static::assertEquals($deps, $subject->getDependencies());
     }
 
-    /**
-     * @since [*next-version*]
-     */
     public function testInvoke()
     {
         $services = [
@@ -42,15 +39,18 @@ class ServiceListTest extends TestCase
             'bar' => 'world',
         ];
 
-        $keys = array_keys($services);
         $values = array_values($services);
+        $map = array_combine([
+            'alpha',
+            'beta',
+        ], array_keys($services));
 
         $container = MockContainer::with($this, $services);
 
-        $subject = new ServiceList($keys);
+        $subject = new ServiceMap($map);
         $result = $subject($container);
 
-        static::assertEquals($values, $result);
+        static::assertEquals(array_combine(array_keys($map), $values), $result);
     }
 
     /**
@@ -60,7 +60,7 @@ class ServiceListTest extends TestCase
     {
         $container = MockContainer::create($this);
 
-        $subject = new ServiceList([]);
+        $subject = new ServiceMap([]);
         $result = $subject($container);
 
         static::assertEmpty($result);
