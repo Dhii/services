@@ -7,6 +7,7 @@ namespace Dhii\Services\Factories;
 use Dhii\Services\Factory;
 use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -46,6 +47,8 @@ class Constructor extends Service
 
     /**
      * @inheritDoc
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
     #[\Override]
     public function __invoke(ContainerInterface $c)

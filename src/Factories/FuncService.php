@@ -6,6 +6,7 @@ namespace Dhii\Services\Factories;
 
 use Dhii\Services\ResolveKeysCapableTrait;
 use Dhii\Services\Service;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -59,9 +60,11 @@ class FuncService extends Service
     /**
      * @inheritDoc
      * @return callable
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
     #[\Override]
-    public function __invoke(ContainerInterface $c)
+    public function __invoke(ContainerInterface $c): callable
     {
         $deps = $this->resolveDeps($c, $this->dependencies);
 

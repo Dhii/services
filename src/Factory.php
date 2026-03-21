@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dhii\Services;
 
 use Dhii\Services\Factories\Constructor;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -47,6 +48,8 @@ class Factory extends Service
 
     /**
      * @inheritDoc
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
     #[\Override]
     public function __invoke(ContainerInterface $c)

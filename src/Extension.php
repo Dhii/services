@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dhii\Services;
 
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -50,6 +51,8 @@ class Extension extends Service
      * @inheritDoc
      *
      * @param mixed $prev The original value, if any.
+     *
+     * @throws ContainerExceptionInterface If problem resolving from container.
      */
     #[\Override]
     public function __invoke(ContainerInterface $c, mixed $prev = null): mixed
