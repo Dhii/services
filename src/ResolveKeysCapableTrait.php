@@ -42,6 +42,7 @@ trait ResolveKeysCapableTrait
     {
         $result = [];
         foreach ($deps as $dep) {
+            /** @psalm-suppress MixedAssignment We can't know the type that will be resolved */
             $result[] = $this->resolveSingleDep($c, $dep);
         }
 
