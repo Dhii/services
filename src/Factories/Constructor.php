@@ -58,7 +58,7 @@ class Constructor extends Service
      * @throws ContainerExceptionInterface If problem resolving from container.
      */
     #[\Override]
-    public function __invoke(ContainerInterface $c)
+    public function __invoke(ContainerInterface $c): object
     {
         $deps = $this->resolveDeps($c, $this->dependencies);
         $className = $this->className;
