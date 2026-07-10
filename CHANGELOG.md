@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [[*next-version*]] - YYYY-MM-DD
+
+## [0.2.0-alpha1] - 2026-07-10
 ### Changed
 - Drop PHP 7 and PHP 8.0 support, now requires PHP 8.1+ (#23). 
 
